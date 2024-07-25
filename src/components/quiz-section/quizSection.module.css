@@ -1,0 +1,35 @@
+.header {
+    font-size: 25px;
+    color: var(--background);
+    font-weight: 600;
+    display: flex;
+    border-bottom: 1px solid #333;
+    padding-bottom: 30px;
+}
+
+.quiz {
+    font-size: 24px;
+    padding: 20px 0;
+}
+
+.quiz h2 {
+    font-size: 18px;
+    color: var(--background);
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.selectionAnswer {
+    display: inline-flex;
+    flex-direction: column;
+}
+
+.selectionAnswer label {
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+}
+
+.explanation {
+    display: none;
+}
