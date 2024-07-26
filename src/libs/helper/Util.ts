@@ -1,4 +1,4 @@
-import { Question } from "./Questions";
+import { Question } from "../Questions";
 
 /**
  * Shuffling using the Fisher-Yates Shuffle or Knuth Shuffle.
