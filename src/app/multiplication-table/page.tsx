@@ -30,7 +30,6 @@ const MultiplicationTablePage = () => {
 
   const checkAnswer = () => {
     const timeTable = document.querySelector(`.${styles.timeTable}`);
-    console.log(value[1]);
 
     for (let row: number = 1; row < timeTable?.children.length!; row++) {
 

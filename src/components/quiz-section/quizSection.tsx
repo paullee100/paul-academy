@@ -33,12 +33,12 @@ const QuizSection = ({ score, questionNum, category, quiz, answerChosen, updateA
               
             {questionNum < category.length ? 
             <div className={styles.selectionAnswer}>
-                {category[questionNum].answers.map((answer, index) => (
-                    <div key={index}>
-                        <input disabled={quiz} name="selection" type="radio" checked={answerChosen[questionNum] === index} onChange={_ => clickAnswer(index)} />
-                        <label htmlFor={`selection${index}`}>{answer.text}</label>
-                    </div>
-                ))}
+            {category[questionNum].answers.map((answer, index) => (
+                <div key={index}>
+                    <input disabled={quiz} name="selection" type="radio" id={`selection${index}`} checked={answerChosen[questionNum] === index} onChange={_ => clickAnswer(index)} />
+                    <label htmlFor={`selection${index}`}>{answer.text}</label>
+                </div>
+            ))}
             </div> : 
             <div>
                 You finished!

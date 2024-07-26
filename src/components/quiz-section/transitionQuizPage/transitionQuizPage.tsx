@@ -30,13 +30,12 @@ const TransitionQuizPage = ({ score, questionNum, category, quiz, answerChosen, 
     }
 
     const nextQuestion = () => {
+
         if (questionNum+1 === category.length && !quiz) {
 
             if (answerChosen.includes(undefined)) {
                 let unanswered: string[] = [];
-                console.log(answerChosen.length);
                 answerChosen.map((question: string | undefined, index: number) => {
-                    console.log(question);
                 if (question === undefined) {
                     unanswered.push((index+1).toString());
                 }
@@ -49,7 +48,6 @@ const TransitionQuizPage = ({ score, questionNum, category, quiz, answerChosen, 
                 setQuestionNum(questionNum+1);
                 finishQuiz(true);
                 const pass = finalResult();
-                console.log(pass);
             }
         } else {
             setQuestionNum(questionNum+1);
@@ -57,7 +55,7 @@ const TransitionQuizPage = ({ score, questionNum, category, quiz, answerChosen, 
 
         if (quiz && questionNum+1 < category.length) {
             resetClass();
-            const answerSheet = document.querySelector(`.${styles.selectionAnswer}`);
+            const answerSheet = document.querySelector(`.${styles.changePageButton}`)?.parentNode?.children[0]?.children[1].children[1];
             if (category[questionNum+1].answers[answerChosen[questionNum+1]].correct) {
                 answerSheet!.children[answerChosen[questionNum+1]].classList.add(`${styles.correct}`);
             } else {
@@ -67,25 +65,23 @@ const TransitionQuizPage = ({ score, questionNum, category, quiz, answerChosen, 
     }
 
     const check = () => {
-        const answerSheet = document.querySelector(`.${styles.selectionAnswer}`);
+        const answerSheet = document.querySelector(`.${styles.changePageButton}`)?.parentNode?.children[0]?.children[1].children[1];
 
-        // console.log(answerSheet);
-        
         try {
-        resetClass();
+            resetClass();
         if (category[questionNum-1].answers[answerChosen[questionNum-1]].correct) {
             answerSheet!.children[answerChosen[questionNum-1]].classList.add(`${styles.correct}`);
         } else {
             answerSheet!.children[answerChosen[questionNum-1]].classList.add(`${styles.incorrect}`);
         }
         } catch (e: any) {
-        console.log("Hello World!");
-        return;
+            console.log("Hello World!");
+            return;
         }
     }
 
   const resetClass = () => {
-    const answerSheet = document.querySelector(`.${styles.selectionAnswer}`);
+    const answerSheet = document.querySelector(`.${styles.changePageButton}`)?.parentNode?.children[0]?.children[1].children[1];
     Array.from(answerSheet!.children).forEach((answer) => {
       if (answer.classList.contains(`${styles.correct}`)) {
         answer.classList.remove(`${styles.correct}`);
