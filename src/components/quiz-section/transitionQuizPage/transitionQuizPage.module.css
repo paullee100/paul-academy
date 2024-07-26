@@ -1,20 +1,8 @@
-.selectionAnswer {
-    display: inline-flex;
-    flex-direction: column;
-}
-
-.selectionAnswer label {
-    user-select: none;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-}
-
 .changePageButton {
-    position: absolute;
-    bottom: 0;
-    right: 0;
+    position: relative;
     margin-bottom: 25px;
     margin-right: 25px;
+    float: right;
 }
 
 .changePageButton button {

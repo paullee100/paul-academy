@@ -11,7 +11,7 @@ export const Definition = [
             { text: "None of the above", correct: false}
         ],
         "Integers are whole numbers including zero.",
-        ""
+        undefined
     ),
     new Question(
         "A perfect square is ",
@@ -22,7 +22,7 @@ export const Definition = [
             { text: "a graph to see the distance between numbers", correct: false}
         ],
         "Result of the square root will equal to an integer value.",
-        ""
+        undefined
     ),
     new Question(
         "What is the definition of a prime number?",
@@ -33,7 +33,7 @@ export const Definition = [
             { text: "Any whole number greater than 1 that has only two factors, itself and 1; that is, a number that can be divided evenly only by 1 and itself.", correct: true}
         ],
         "Definition is the green answer",
-        ""
+        undefined
     ),
     new Question(
         "What is the definition of a composite number?",
@@ -44,7 +44,7 @@ export const Definition = [
             { text: "Any whole number greater than 1 that has more than two different factors; in other words, any whole number that is not a prime number", correct: true}
         ],
         "Definition is the green answer",
-        ""
+        undefined
     ),
     new Question(
         "What is the definition of a even number?",
@@ -55,7 +55,7 @@ export const Definition = [
             { text: "A superscript number placed next to another number at the top right.", correct: false}
         ],
         "Definition is the green answer",
-        ""
+        undefined
     ),
     new Question(
         "Rational numbers ",
@@ -66,7 +66,7 @@ export const Definition = [
             { text: "are the basic building blocks of mathematics.", correct: false}
         ],
         "Definition is the green answer",
-        ""
+        undefined
     ),
     new Question(
         "Irrational numbers ",
@@ -77,6 +77,6 @@ export const Definition = [
             { text: "are any number that uses a decimal point to show the part of the number that is less than one.", correct: false}
         ],
         "Definition is the green answer",
-        ""
+        undefined
     )
 ]

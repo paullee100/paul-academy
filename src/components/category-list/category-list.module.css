@@ -20,11 +20,17 @@
     height: 100%;
 }
 
+.categoryList ol li a {
+    color: white;
+    text-decoration: none;
+}
+
 .category ol li:before {
     content: 'a';
 }
 
-.categoryList ol li:hover:not([disabled]) {
+.categoryList ol li:hover:not([disabled]),
+.categoryList ol li a:hover:not([disabled]) {
     background-color: #fff;
     color: var(--background);
 }

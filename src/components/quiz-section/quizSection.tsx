@@ -3,6 +3,7 @@
 import React from 'react'
 import styles from "./quizSection.module.css";
 import { Question } from '@/libs/Questions';
+import Image from "next/image";
 
 interface Props {
     score: number;
@@ -29,11 +30,23 @@ const QuizSection = ({ score, questionNum, category, quiz, answerChosen, updateA
         </div>
 
         <div className={styles.quiz}>
+            {category[questionNum].image ?
+            <Image src={category[questionNum].image} alt="" width={300} height={200}/>
+            :
+            <div></div>
+            }
+
             <h2>{questionNum < category.length ? category[questionNum].question : `You scored ${score} out of ${category.length} - ${Math.round(score/category.length*100)}%`}</h2>
               
             {questionNum < category.length ? 
             <div className={styles.selectionAnswer}>
             {category[questionNum].answers.map((answer, index) => (
+                answer.text[0] === '/' ?
+                <div key={index}>
+                    <input disabled={quiz} name="selection" type="radio" id={`selection${index}`} checked={answerChosen[questionNum] === index} onChange={_ => clickAnswer(index)} />
+                    <label htmlFor={`selection${index}`}><Image src={answer.text} alt="" width={200} height={100}/></label>
+                </div>
+                :
                 <div key={index}>
                     <input disabled={quiz} name="selection" type="radio" id={`selection${index}`} checked={answerChosen[questionNum] === index} onChange={_ => clickAnswer(index)} />
                     <label htmlFor={`selection${index}`}>{answer.text}</label>

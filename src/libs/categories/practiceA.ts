@@ -10,7 +10,7 @@ export const PracticeA = [
             { text: "6,365", correct: false }
         ],
         "",
-        ""
+        undefined
     ),
     new Question(
         "The length of a bulletin board is 5 1/2 feet. What is the length of the bulletin board in inches?",
@@ -21,15 +21,18 @@ export const PracticeA = [
             { text: "66 inches", correct: true }
         ],
         "",
-        ""
+        undefined
     ),
     new Question(
         "Which of the following is a hexagon?",
         [
-            { text: "", correct: false },
+            { text: "/paul-academy/practicea/Question33a.png", correct: false },
+            { text: "/paul-academy/practicea/Question33b.png", correct: false },
+            { text: "/paul-academy/practicea/Question33c.png", correct: false },
+            { text: "/paul-academy/practicea/Question33d.png", correct: true }
         ],
         "",
-        ""
+        undefined
     ),
     new Question(
         "What is the sum of 7 and 5?",
@@ -40,7 +43,7 @@ export const PracticeA = [
             { text: "35", correct: false }
         ],
         "",
-        ""
+        undefined
     ),
     new Question(
         "Which of the following is equivalent to half a dollar?",
@@ -51,7 +54,7 @@ export const PracticeA = [
             { text: "50 cents", correct: false }
         ],
         "",
-        ""
+        undefined
     ),
     new Question(
         "Which of the following is the closest approximation to 23.62 + 26.81 + 24.12?",
@@ -62,7 +65,7 @@ export const PracticeA = [
             { text: "100", correct: false }
         ],
         "",
-        ""
+        undefined
     ),
     new Question(
         "Which of the following numbers is greater than 0.25?",
@@ -73,7 +76,7 @@ export const PracticeA = [
             { text: "0.2", correct: false }
         ],
         "",
-        ""
+        undefined
     ),
     new Question(
         "In the partially completed multiplication table shown above, what value should be placed in the shaded box?",
@@ -84,7 +87,7 @@ export const PracticeA = [
             { text: "18", correct: true }
         ],
         "",
-        ""
+        "/paul-academy/practicea/Question38.png"
     ),
     new Question(
         "Which of the following is true?",
@@ -95,7 +98,7 @@ export const PracticeA = [
             { text: "4 = 9", correct: false }
         ],
         "",
-        ""
+        undefined
     ),
     new Question(
         "42.58 + 1.5 = ",
@@ -106,7 +109,7 @@ export const PracticeA = [
             { text: "44.08", correct: true }
         ],
         "",
-        ""
+        undefined
     ),
     new Question(
         "For a lesson in measurement, a student is assigned to find the perimeter of Mr. Gray's rectangular classroom, shown above. Which of the following would correctly determine the perimeter of the classroom?",
@@ -117,7 +120,7 @@ export const PracticeA = [
             { text: "2(Length) x 2(Width)", correct: false }
         ],
         "",
-        ""
+        "/paul-academy/practicea/Question41.png"
     ),
     new Question(
         "3^4 = ",
@@ -128,7 +131,7 @@ export const PracticeA = [
             { text: "3 x 3 x 3 x 3", correct: true }
         ],
         "",
-        ""
+        undefined
     ),
     new Question(
         "On the number line above, where is 3/2 located?",
@@ -139,7 +142,7 @@ export const PracticeA = [
             { text: "To the right of 1", correct: true }
         ],
         "",
-        ""
+        undefined
     ),
     new Question(
         "The graph above shows the distribution of musical instruments played by students in a class. If each student plays only one instrument, how many students play the drums?",
@@ -150,7 +153,7 @@ export const PracticeA = [
             { text: "10", correct: true }
         ],
         "",
-        ""
+        "/paul-academy/practicea/Question44.png"
     ),
     new Question(
         "Mrs. Perez is helping a student solve the word problem shown above. Which of the following is a correct procedure that Mrs. Perez can use?",
@@ -161,7 +164,7 @@ export const PracticeA = [
             { text: "(4 + 2)($0.75 + $1.25)", correct: false }
         ],
         "",
-        ""
+        "/paul-academy/practicea/Question45.png"
     ),
     new Question(
         "If x + 4 = 14, what is the value of x?",
@@ -172,7 +175,7 @@ export const PracticeA = [
             { text: "56", correct: false }
         ],
         "",
-        ""
+        undefined
     ),
     new Question(
         "Which of the following numbers has a 2 in the hundredths place?",
@@ -183,7 +186,7 @@ export const PracticeA = [
             { text: "1,007.23", correct: false }
         ],
         "",
-        ""
+        undefined
     ),
     new Question(
         "Which of the following is NOT equivalent to 1/2?",
@@ -194,7 +197,7 @@ export const PracticeA = [
             { text: "1.5/3.0", correct: false }
         ],
         "",
-        ""
+        undefined
     ),
     new Question(
         "In the xy-plane above, what are the coordinates of point T?",
@@ -205,7 +208,7 @@ export const PracticeA = [
             { text: "(-5, 3)", correct: false }
         ],
         "",
-        ""
+        "/paul-academy/practicea/Question49.png"
     ),
     new Question(
         "The total time for 3 class activities is 1 1/4 hours. If the time spent on each activity is the same, how many minutes long is each activity?",
@@ -216,7 +219,7 @@ export const PracticeA = [
             { text: "75 minutes", correct: false }
         ],
         "",
-        ""
+        undefined
     ),
     new Question(
         "In the list above, the first number is 5 and each number after that is 15 more than the previous number. If the pattern is continued, what will be the seventh number in the list?",
@@ -227,7 +230,7 @@ export const PracticeA = [
             { text: "80", correct: false }
         ],
         "",
-        ""
+        "/paul-academy/practicea/Question51.png"
     ),
     new Question(
         "On Tuesday, the school store sold 60 pencils for $0.20 each and 40 pens for $0.50 each. In addition, 8 book bags were sold for $5.00 each. What was the total amount of these sales?",
@@ -238,7 +241,7 @@ export const PracticeA = [
             { text: "$72.00", correct: true }
         ],
         "",
-        ""
+        undefined
     ),
     new Question(
         "The table above shows Cindy's test scores on each of 4 tests. Her final science grade is equal to the average (arithmetic mean) of these scores. What is Cindy's final science grade?",
@@ -249,7 +252,7 @@ export const PracticeA = [
             { text: "84", correct: false }
         ],
         "",
-        ""
+        "/paul-academy/practicea/Question53.png"
     ),
     new Question(
         "1/2 + 1/4 = ",
@@ -260,7 +263,7 @@ export const PracticeA = [
             { text: "1", correct: false }
         ],
         "",
-        ""
+        undefined
     ),
     new Question(
         "Which of the following would most likely be the concept that the pattern above is used to teach?",
@@ -271,7 +274,7 @@ export const PracticeA = [
             { text: "Decimals", correct: false }
         ],
         "",
-        ""
+        "/paul-academy/practicea/Question55.png"
     ),
     new Question(
         "A student wrote the incorrect number sentence above to calculate 40% of 600. To correct the error, the student's number sentence should be changed to ",
@@ -282,7 +285,7 @@ export const PracticeA = [
             { text: "100/40 x 600 = ?", correct: false }
         ],
         "",
-        ""
+        "/paul-academy/practicea/Question56.png"
     ),
     new Question(
         "What is the approximate value of 20% of 19.89?",
@@ -293,7 +296,7 @@ export const PracticeA = [
             { text: "4", correct: true }
         ],
         "",
-        ""
+        undefined
     ),
     new Question(
         "5 + 75 / 25 - 5 = ",
@@ -304,7 +307,7 @@ export const PracticeA = [
             { text: "-1.8", correct: false }
         ],
         "",
-        ""
+        undefined
     ),
     new Question(
         "According to the graph above, the total number of books borrowed from the school library for the four months shown is ",
@@ -315,7 +318,7 @@ export const PracticeA = [
             { text: "greater than 1,100", correct: false }
         ],
         "",
-        ""
+        "/paul-academy/practicea/Question59.png"
     ),
     new Question(
         "For a science project, a class measures the height of a plant at the end of each week for four consecutive weeks, as shown in the table above. The height of the plant increases by the same amount each week. If this pattern continues, what will be the height of the plant at the end of the 6th week?",
@@ -326,6 +329,6 @@ export const PracticeA = [
             { text: "17 inches", correct: false }
         ],
         "",
-        ""
+        "/paul-academy/practicea/Question60.png"
     )
 ]

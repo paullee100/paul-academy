@@ -9,10 +9,12 @@ interface Props {
     setQuestionNum: Function;
     setScore: Function;
     updateCategory: Function;
-
+    updatePage: Function;
+    answerChosen: any[];
+    updateAnswerChosen: Function;
 }
 
-const CategoryList = ({ unlockedSection, setQuestionNum, setScore, updateCategory }: Props) => {
+const CategoryList = ({ unlockedSection, setQuestionNum, setScore, updateCategory, updatePage, answerChosen, updateAnswerChosen }: Props) => {
   const changeCategory = (index: number) => {
     if (index > unlockedSection) {
         alert("Oops, you haven't unlocked that one yet! Complete the previous sections to continue!");
@@ -21,6 +23,10 @@ const CategoryList = ({ unlockedSection, setQuestionNum, setScore, updateCategor
     setQuestionNum(0);
     setScore(0);
     updateCategory(index);
+    updatePage(true);
+
+    const clearAnswers = Array(answerChosen.length).fill(undefined);
+    updateAnswerChosen(clearAnswers);
   }
 
   return (
