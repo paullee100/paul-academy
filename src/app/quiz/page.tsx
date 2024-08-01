@@ -1,9 +1,8 @@
 "use client"
 
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import styles from "./quiz.module.css";
 import { getCategory, getCategoryName } from '@/libs/Categories';
-import Link from 'next/link';
 import { Question } from '@/libs/Questions';
 import CategoryList from '@/components/category-list/category-list';
 import InstructionPage from '@/components/instruction-page/instruction-page';

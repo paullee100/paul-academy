@@ -13,7 +13,7 @@ export const PracticeA = [
         undefined
     ),
     new Question(
-        "The length of a bulletin board is 5 1/2 feet. What is the length of the bulletin board in inches?",
+        "The length of a bulletin board is 5½ feet. What is the length of the bulletin board in inches?",
         [
             { text: "55 inches", correct: false },
             { text: "56 inches", correct: false },
@@ -123,7 +123,7 @@ export const PracticeA = [
         "/paul-academy/practicea/Question41.png"
     ),
     new Question(
-        "3^4 = ",
+        "3\u2074 = ",
         [
             { text: "3 + 4", correct: false },
             { text: "4 + 4 + 4", correct: false },
@@ -134,7 +134,7 @@ export const PracticeA = [
         undefined
     ),
     new Question(
-        "On the number line above, where is 3/2 located?",
+        "On the number line above, where is ³⁄₂ located?",
         [
             { text: "To the left of -1", correct: false },
             { text: "Between -1 and 0", correct: false },
@@ -142,7 +142,7 @@ export const PracticeA = [
             { text: "To the right of 1", correct: true }
         ],
         "",
-        undefined
+        "/paul-academy/practicea/Question43.png"
     ),
     new Question(
         "The graph above shows the distribution of musical instruments played by students in a class. If each student plays only one instrument, how many students play the drums?",
@@ -191,8 +191,8 @@ export const PracticeA = [
     new Question(
         "Which of the following is NOT equivalent to 1/2?",
         [
-            { text: "50/100", correct: false },
-            { text: "2/8", correct: true },
+            { text: "⁵⁰⁄₁₀₀", correct: false },
+            { text: "²⁄₈", correct: true },
             { text: "0.5", correct: false },
             { text: "1.5/3.0", correct: false }
         ],
@@ -211,7 +211,7 @@ export const PracticeA = [
         "/paul-academy/practicea/Question49.png"
     ),
     new Question(
-        "The total time for 3 class activities is 1 1/4 hours. If the time spent on each activity is the same, how many minutes long is each activity?",
+        "The total time for 3 class activities is 1¼ hours. If the time spent on each activity is the same, how many minutes long is each activity?",
         [
             { text: "15 minutes", correct: false },
             { text: "25 minutes", correct: true },
@@ -255,11 +255,11 @@ export const PracticeA = [
         "/paul-academy/practicea/Question53.png"
     ),
     new Question(
-        "1/2 + 1/4 = ",
+        "½ + ¼ = ",
         [
-            { text: "1/6", correct: false },
-            { text: "2/6", correct: false },
-            { text: "3/4", correct: true },
+            { text: "⅙", correct: false },
+            { text: "²⁄₆", correct: false },
+            { text: "¾", correct: true },
             { text: "1", correct: false }
         ],
         "",
@@ -279,10 +279,10 @@ export const PracticeA = [
     new Question(
         "A student wrote the incorrect number sentence above to calculate 40% of 600. To correct the error, the student's number sentence should be changed to ",
         [
-            { text: "600/40 = ?", correct: false },
-            { text: "1/40 x 600 = ?", correct: false },
-            { text: "40/100 x 600 = ?", correct: true },
-            { text: "100/40 x 600 = ?", correct: false }
+            { text: "⁶⁰⁰⁄₄₀ = ?", correct: false },
+            { text: "¹⁄₄₀ x 600 = ?", correct: false },
+            { text: "⁴⁰⁄₁₀₀ x 600 = ?", correct: true },
+            { text: "¹⁰⁰⁄₄₀ x 600 = ?", correct: false }
         ],
         "",
         "/paul-academy/practicea/Question56.png"

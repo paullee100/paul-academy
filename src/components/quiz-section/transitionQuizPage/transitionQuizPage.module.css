@@ -1,8 +1,6 @@
 .changePageButton {
     position: relative;
-    margin-bottom: 25px;
-    margin-right: 25px;
-    float: right;
+    margin: 0 auto;
 }
 
 .changePageButton button {
