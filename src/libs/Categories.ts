@@ -4,23 +4,25 @@ import { Factor } from "./categories/factor";
 import { PEMDAS } from "./categories/pemdas";
 import { PracticeA } from "./categories/practiceA";
 import { PrimeNumber } from "./categories/primeNumber";
-import { shuffle } from "./helper/Util";
-
-const Categories = [
-    Definition,
-    Exponent,
-    Factor,
-    PEMDAS,
-    PrimeNumber,
-    PracticeA,
-    [],
-    [],
-    [],
-    [],
-]
+import { shuffle } from "./helper/util";
 
 export const getCategory = (index: number) => {
-    return Categories[index];
+    switch (index) {
+        case 0:
+            return Definition
+        case 1:
+            return Exponent
+        case 2:
+            return Factor
+        case 3:
+            return PEMDAS
+        case 4:
+            return PrimeNumber
+        case 5:
+            return PracticeA
+        default:
+            return []
+    }
 }
 
 export const getCategoryName = (index: number): string => {

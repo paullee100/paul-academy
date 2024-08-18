@@ -30,7 +30,7 @@ const QuizSection = ({ score, questionNum, category, quiz, answerChosen, updateA
         </div>
 
         <div className={styles.quiz}>
-            {category[questionNum].image ?
+            {questionNum < category.length && category[questionNum].image ?
             <Image src={category[questionNum].image} alt="" width={300} height={200}/>
             :
             <div></div>

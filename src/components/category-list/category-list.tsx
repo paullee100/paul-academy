@@ -3,6 +3,7 @@
 import React from 'react'
 import styles from "./category-list.module.css";
 import Link from 'next/link';
+import { getCategory } from '@/libs/Categories';
 
 interface Props {
     unlockedSection: number;
@@ -25,7 +26,7 @@ const CategoryList = ({ unlockedSection, setQuestionNum, setScore, updateCategor
     updateCategory(index);
     updatePage(true);
 
-    const clearAnswers = Array(answerChosen.length).fill(undefined);
+    const clearAnswers = Array(getCategory(index).length).fill(undefined);
     updateAnswerChosen(clearAnswers);
   }
 

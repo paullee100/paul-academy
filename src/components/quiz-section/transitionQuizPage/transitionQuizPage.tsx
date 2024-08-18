@@ -54,13 +54,7 @@ const TransitionQuizPage = ({ score, questionNum, category, quiz, answerChosen, 
         }
 
         if (quiz && questionNum+1 < category.length) {
-            resetClass();
-            const answerSheet = document.querySelector(`.${styles.changePageButton}`)?.parentNode?.children[0]?.children[1].children[1];
-            if (category[questionNum+1].answers[answerChosen[questionNum+1]].correct) {
-                answerSheet!.children[answerChosen[questionNum+1]].classList.add(`${styles.correct}`);
-            } else {
-                answerSheet!.children[answerChosen[questionNum+1]].classList.add(`${styles.incorrect}`);
-            }
+            check()
         }
     }
 
@@ -69,11 +63,11 @@ const TransitionQuizPage = ({ score, questionNum, category, quiz, answerChosen, 
 
         try {
             resetClass();
-        if (category[questionNum-1].answers[answerChosen[questionNum-1]].correct) {
-            answerSheet!.children[answerChosen[questionNum-1]].classList.add(`${styles.correct}`);
-        } else {
-            answerSheet!.children[answerChosen[questionNum-1]].classList.add(`${styles.incorrect}`);
-        }
+            if (category[questionNum-1].answers[answerChosen[questionNum-1]].correct) {
+                answerSheet!.children[answerChosen[questionNum-1]].classList.add(`${styles.correct}`);
+            } else {
+                answerSheet!.children[answerChosen[questionNum-1]].classList.add(`${styles.incorrect}`);
+            }
         } catch (e: any) {
             console.log("Hello World!");
             return;

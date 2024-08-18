@@ -1,6 +1,7 @@
 // https://en.wikipedia.org/wiki/Unicode_subscripts_and_superscripts
 
-import { convert_unicode_to_decimal, generate_multiple_choice_answers, getRandomNumber, getRandomOperator, is_prime } from "./Util";
+import { convert_unicode_to_decimal, generate_multiple_choice_answers, getRandomNumber, getRandomOperator, is_prime } from "./util";
+import { evaluate } from 'mathjs'
 
 /********** EXPONENT **********/
 /**
@@ -49,7 +50,7 @@ export const eval_math = (equation: string): number[] => {
         }
     }
 
-    return generate_multiple_choice_answers(eval(equation));
+    return generate_multiple_choice_answers(evaluate_math(equation));
 }
 
 /********** FACTOR **********/
@@ -122,7 +123,7 @@ export const generate_greatest_common_factor = () => {
         if (getNumA > 2) break
     }
 
-    console.log(generate_multiple_choice_answers(getNumA))
+    // console.log(generate_multiple_choice_answers(getNumA))
     return [num[0], num[1], getNumA]
 }
 
@@ -180,10 +181,8 @@ export const generate_PEMDAS_problems = () => {
     if (Math.random() > 0.5) {
         const parts = problem.split(' ')
         let index = getRandomNumber(0, parts.length-3)
-        // while (typeof(parts[index]) !== 'number') {
-        //     index = getRandomNumber(0, parts.length-3)
-        //     console.log(typeof(parts[index]) === 'number')
-        // }
+        index = index % 2 === 1 ? index+1 : index
+
         parts[index] = `(${parts[index]}`
         parts[index + 2] = `${parts[index+2]})`
         problem = parts.join(' ')
@@ -192,6 +191,15 @@ export const generate_PEMDAS_problems = () => {
     // Replace '^' with '**' for JavaScript exponentiation
     problem = problem.replace(/\^/g, '**')
 
-    const answer: string[] = generate_multiple_choice_answers(eval(problem)).map(String)
+    const answer: string[] = generate_multiple_choice_answers(evaluate_math(problem)).map(String)
     return [problem].concat(answer)
+}
+
+const evaluate_math = (formula: string) => {
+    formula = formula.replace(/\*\*/g, '^')
+    try {
+        return evaluate(formula)
+    } catch(e) {
+        return -1
+    }
 }
