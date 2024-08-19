@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react'
 import styles from "./quiz.module.css";
-import { getCategory, getCategoryName } from '@/libs/Categories';
+import { getCategory, getCategoryName } from '@/libs/category';
 import { Question } from '@/libs/Questions';
 import CategoryList from '@/components/category-list/category-list';
 import InstructionPage from '@/components/instruction-page/instruction-page';

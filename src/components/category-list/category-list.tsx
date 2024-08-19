@@ -3,7 +3,7 @@
 import React from 'react'
 import styles from "./category-list.module.css";
 import Link from 'next/link';
-import { getCategory } from '@/libs/Categories';
+import { getCategory } from '@/libs/category';
 
 interface Props {
     unlockedSection: number;

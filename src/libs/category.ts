@@ -4,7 +4,6 @@ import { Factor } from "./categories/factor";
 import { PEMDAS } from "./categories/pemdas";
 import { PracticeA } from "./categories/practiceA";
 import { PrimeNumber } from "./categories/primeNumber";
-import { shuffle } from "./helper/util";
 
 export const getCategory = (index: number) => {
     switch (index) {

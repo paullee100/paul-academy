@@ -1,6 +1,6 @@
 // https://en.wikipedia.org/wiki/Unicode_subscripts_and_superscripts
 
-import { convert_unicode_to_decimal, generate_multiple_choice_answers, getRandomNumber, getRandomOperator, is_prime } from "./util";
+import { convert_unicode_to_decimal, generate_multiple_choice_answers, getRandomNumber, getRandomOperator, is_prime } from "./utility";
 import { evaluate } from 'mathjs'
 
 /********** EXPONENT **********/
