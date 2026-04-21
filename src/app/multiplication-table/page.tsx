@@ -4,48 +4,59 @@ import React, { useState } from 'react'
 import styles from "./multiplicationTable.module.css";
 
 const MultiplicationTablePage = () => {
+  const SIZE = 12
   const table: string[][] = [];
 
-  for (let row: number = 0; row < 13; row++) {
+  for (let row: number = 0; row < SIZE; row++) {
     table.push([]);
-    for (let col: number = 0; col < 13; col++) {
-      if (row === 0 || col === 0) {
-        table[row].push((row+col).toString());
+    for (let col: number = 0; col < SIZE+1; col++) {
+      if (col === 0) {
+        table[row].push((row+col+1).toString());
       } else {
         table[row].push('');
       }
     }
   }
 
-  const [value, setValue] = useState(Array(156));
+
   const [disable, setDisable] = useState(false);
   const [score, setScore] = useState(0);
 
-  const updateValue = (event: React.ChangeEvent<HTMLInputElement>, num: number) => {
-    const val = event.target.value;
-    value[num] = parseInt(val, 10);
-    setValue(value);
+  const [userAnswer, updateUserAnswer] = useState(Array.from({ length: SIZE }, () => Array(SIZE).fill(0)))
+  const [result, updateResult] = useState(Array.from({ length: SIZE }, () => Array(SIZE).fill(false)))
 
+  const updateValue = (event: React.ChangeEvent<HTMLInputElement>, rowIndex: number, colIndex: number) => {
+    
+    updateUserAnswer(prevUserAnswer =>
+      prevUserAnswer.map((row, indexRow) => (
+        indexRow === rowIndex ?
+          row.map((col, indexCol) => (indexCol+1 === colIndex ? 
+            parseInt(event.target.value, 10) : col)) 
+            : 
+            row
+      ))
+    )
+    
   }
 
   const checkAnswer = () => {
-    const timeTable = document.querySelector(`.${styles.timeTable}`);
 
-    for (let row: number = 1; row < timeTable?.children.length!; row++) {
+    const finalAnswer = [...result]
+    for (let rowIndex: number = 0; rowIndex < userAnswer.length; rowIndex++) {
 
-      const rowSection = timeTable?.children!;
-      for (let col: number = 1; col < rowSection[row].children.length!; col++) {
-        const rowVal: number = parseInt(rowSection[0].children[col].firstChild?.textContent!, 10);
-        const colVal: number = parseInt(rowSection[row].children[0].firstChild?.textContent!, 10);
+      for (let colIndex: number = 0; colIndex < userAnswer[rowIndex].length; colIndex++) {
 
-        if (value[(row-1)*rowSection[row].children.length + col] === rowVal * colVal) {
-          rowSection[row].children[col].children[0].classList.add(`${styles.correct}`);
-          setScore(score+1);
-        } else {
-          rowSection[row].children[col].children[0].classList.add(`${styles.incorrect}`);
+        if (userAnswer[rowIndex][colIndex] === (rowIndex+1)*(colIndex+1)) {
+          console.log("CORRECT!!!!")
+          setScore(score+1)
+
+          finalAnswer[rowIndex][colIndex+1] = true
+
         }
       }
     }
+
+    updateResult(finalAnswer)
     setDisable(true);
   }
 
@@ -55,11 +66,24 @@ const MultiplicationTablePage = () => {
       <div className={styles.quiz}>
         <table>
           <tbody className={styles.timeTable}>
+            
+            <tr>
+              {
+                Array.from({ length: SIZE+1 }).map((_, index) => (
+                  <td key={`row header${index}`}><span>{index}</span></td>
+                ))
+              }
+            </tr>
+
             {table.map((valueArray: string[], rowIndex: number) => (
               <tr key={`row${rowIndex}`}>
                 {valueArray.map((num: string, colIndex: number) => (
                   <td key={`box${colIndex}`}>
-                    {num === '' ? <input type="number" onChange={event => updateValue(event, (rowIndex-1) * valueArray.length + colIndex)} disabled={disable}/> : <span>{num}</span>}
+                    {colIndex > 0 ? 
+                      <input type="number" onChange={event => updateValue(event, rowIndex, colIndex)} disabled={disable} className={!disable ? styles.white : (result[rowIndex][colIndex] ? styles.correct : styles.incorrect) }/>
+                       : 
+                      <span>{num}</span>
+                    }
                   </td>
                 ))}
               </tr>
