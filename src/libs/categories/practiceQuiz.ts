@@ -1,6 +1,6 @@
 import { Question } from "../Questions";
 
-export const PracticeA = [
+export const PracticeQuiz = [
     new Question(
         "6,200 - 945 = ",
         [
@@ -330,5 +330,16 @@ export const PracticeA = [
         ],
         "",
         "/paul-academy/practicea/Question60.png"
+    ),
+    new Question(
+        "A farmer has a rectangular field that measures 125 feet by 200 feet. He wants to enclose the field with a fence. What is the total length of fencing, in feet, that he will need for the job?",
+        [
+            { text: "350", correct: false },
+            { text: "450", correct: false },
+            { text: "550", correct: false },
+            { text: "650", correct: true }
+        ],
+        "This question is asking for the perimeter of the field. Add up all of the sides to find the perimeter: (125 * 2) + (200 * 2) = 650",
+        undefined
     )
 ]

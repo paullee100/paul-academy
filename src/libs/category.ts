@@ -2,7 +2,7 @@ import { Definition } from "./categories/definition";
 import { Exponent } from "./categories/exponent";
 import { Factor } from "./categories/factor";
 import { PEMDAS } from "./categories/pemdas";
-import { PracticeA } from "./categories/practiceA";
+import { PracticeQuiz } from "./categories/practiceQuiz";
 import { PrimeNumber } from "./categories/primeNumber";
 
 export const getCategory = (index: number) => {
@@ -18,7 +18,7 @@ export const getCategory = (index: number) => {
         case 4:
             return PrimeNumber
         case 5:
-            return PracticeA
+            return PracticeQuiz
         default:
             return []
     }

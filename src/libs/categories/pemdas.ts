@@ -1,4 +1,4 @@
-import { generate_PEMDAS_problems } from "../helper/helper"
+import { generate_PEMDAS_problems } from "../helper/generator"
 import { Question } from "../Questions"
 
 const pemdas = [generate_PEMDAS_problems(), generate_PEMDAS_problems(), generate_PEMDAS_problems(), generate_PEMDAS_problems(), generate_PEMDAS_problems()]

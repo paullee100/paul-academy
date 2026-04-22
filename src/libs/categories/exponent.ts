@@ -1,4 +1,4 @@
-import { eval_math, generate_exponent } from "../helper/helper";
+import { eval_math, generate_exponent } from "../helper/generator";
 import { Question } from "../Questions";
 
 const exponents: string[] = generate_exponent(6, 1, 2, 10);

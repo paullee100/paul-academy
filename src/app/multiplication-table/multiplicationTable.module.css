@@ -51,8 +51,11 @@
     cursor: no-drop;
 }
 
-.finishContainer {
+.buttonContainer {
     width: 100%;
+    display: flex;
+    justify-content: space-between;
+
 }
 
 .finishButton {
@@ -60,6 +63,27 @@
     align-items: center;
     justify-content: center;
     text-align: center;
+
+    cursor: pointer;
+}
+
+.finishButton:disabled {
+    cursor: not-allowed;
+}
+
+.home, .finishButton {
+    background-color: #3b82f6;
+    color: #ffffff;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+
+    padding-left: 1rem;
+    padding-right: 1rem;
+
+    border-radius: 0.25rem;
+
+    text-transform: uppercase;
+    text-decoration: none;
 }
 
 .correct {

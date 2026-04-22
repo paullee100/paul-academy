@@ -1,4 +1,4 @@
-import { generate_factor, generate_greatest_common_factor, generate_least_common_multiple, generate_prime_factor } from "../helper/helper"
+import { generate_factor, generate_greatest_common_factor, generate_least_common_multiple, generate_prime_factor } from "../helper/generator"
 import { Question } from "../Questions"
 
 const factors = [generate_factor(), generate_factor(), generate_factor(), generate_factor()]

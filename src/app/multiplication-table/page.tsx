@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react'
 import styles from "./multiplicationTable.module.css";
+import Link from 'next/link';
 
 const MultiplicationTablePage = () => {
   const SIZE = 12
@@ -91,8 +92,9 @@ const MultiplicationTablePage = () => {
           </tbody>
         </table>
       </div>
-      <div className={styles.finishContainer}>
-        <button className={styles.finishButton} onClick={checkAnswer}>Finish</button>
+      <div className={styles.buttonContainer}>
+        <button className={styles.finishButton} onClick={checkAnswer} disabled={disable}>Finish</button>
+        <Link className={styles.home} href="/">Home</Link>
       </div>
     </div>
   )

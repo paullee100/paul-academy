@@ -39,7 +39,7 @@ const CategoryList = ({ unlockedSection, setQuestionNum, setScore, updateCategor
                 <li onClick={_ => changeCategory(2)}>Factor</li>
                 <li onClick={_ => changeCategory(3)}>PEMDAS</li>
                 <li onClick={_ => changeCategory(4)}>Prime Number</li>
-                <li onClick={_ => changeCategory(5)}>Math Practice A</li>
+                <li onClick={_ => changeCategory(5)}>Math Practice</li>
                 <li onClick={_ => changeCategory(6)}><Link href='/multiplication-table'>Multiplication Table</Link></li>
                 <li onClick={_ => changeCategory(7)}>8</li>
                 <li onClick={_ => changeCategory(8)}>9</li>
