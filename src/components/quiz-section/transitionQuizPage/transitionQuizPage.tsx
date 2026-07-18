@@ -1,89 +1,54 @@
 "use client"
 
-import React from 'react'
+import React, { useState } from 'react'
 import styles from "./transitionQuizPage.module.css";
 import { Question } from '@/libs/Questions';
 
 interface Props {
     score: number;
-    questionNum: number;
+    currentQuestionNum: number;
     category: Question[];
-    quiz: boolean;
+    isUserFinishedQuiz: boolean;
     answerChosen: any[];
-    setQuestionNum: Function;
-    finishQuiz: Function;
+    setCurrentQuestionNum: Function;
+    setIsUserFinishedQuiz: Function;
     setScore: Function;
 }
 
-const TransitionQuizPage = ({ score, questionNum, category, quiz, answerChosen, setQuestionNum, finishQuiz, setScore }: Props) => {
+const TransitionQuizPage = ({ score, currentQuestionNum, category, isUserFinishedQuiz, answerChosen, setCurrentQuestionNum, setIsUserFinishedQuiz, setScore }: Props) => {
     
     const previousQuestion = () => {
-        if (questionNum+1 > category.length) {
-            setQuestionNum(0);
+        if (currentQuestionNum+1 > category.length) {
+            setCurrentQuestionNum(0);
         } else {
-        setQuestionNum(questionNum-1);
-        }
-    
-        if (quiz) {
-            check();
+            setCurrentQuestionNum(currentQuestionNum-1);
         }
     }
 
     const nextQuestion = () => {
 
-        if (questionNum+1 === category.length && !quiz) {
+        if (currentQuestionNum+1 === category.length && !isUserFinishedQuiz) {
 
             if (answerChosen.includes(undefined)) {
                 let unanswered: string[] = [];
                 answerChosen.map((question: string | undefined, index: number) => {
-                if (question === undefined) {
-                    unanswered.push((index+1).toString());
-                }
-            });
-            alert(`You have not answered questions ${unanswered.join(", ")}`)
-            return;
-        }
+                    if (question === undefined) {
+                        unanswered.push((index+1).toString());
+                    }
+                });
+                alert(`You have not answered questions ${unanswered.join(", ")}`)
+                return;
+            }
 
             if (confirm("Finish Quiz?")) {
-                setQuestionNum(questionNum+1);
-                finishQuiz(true);
-                const pass = finalResult();
+                setCurrentQuestionNum(currentQuestionNum+1);
+                setIsUserFinishedQuiz(true);
+                finalResult()
             }
         } else {
-            setQuestionNum(questionNum+1);
-        }
-
-        if (quiz && questionNum+1 < category.length) {
-            check()
+            setCurrentQuestionNum(currentQuestionNum+1);
         }
     }
-
-    const check = () => {
-        const answerSheet = document.querySelector(`.${styles.changePageButton}`)?.parentNode?.children[0]?.children[1].children[1];
-
-        try {
-            resetClass();
-            if (category[questionNum-1].answers[answerChosen[questionNum-1]].correct) {
-                answerSheet!.children[answerChosen[questionNum-1]].classList.add(`${styles.correct}`);
-            } else {
-                answerSheet!.children[answerChosen[questionNum-1]].classList.add(`${styles.incorrect}`);
-            }
-        } catch (e: any) {
-            console.log("Hello World!");
-            return;
-        }
-    }
-
-  const resetClass = () => {
-    const answerSheet = document.querySelector(`.${styles.changePageButton}`)?.parentNode?.children[0]?.children[1].children[1];
-    Array.from(answerSheet!.children).forEach((answer) => {
-      if (answer.classList.contains(`${styles.correct}`)) {
-        answer.classList.remove(`${styles.correct}`);
-      } else if (answer.classList.contains(`${styles.incorrect}`)) {
-        answer.classList.remove(`${styles.incorrect}`);
-      }
-    })
-  }
 
   const finalResult = () => {
 
@@ -100,8 +65,8 @@ const TransitionQuizPage = ({ score, questionNum, category, quiz, answerChosen, 
 
   return (
     <div className={styles.changePageButton}>
-        <button onClick={previousQuestion} disabled={questionNum === 0}>{questionNum < category.length ? "BACK" : "REVIEW"}</button>
-        <button onClick={nextQuestion}>{questionNum+1 === category.length ? "FINISH" : "NEXT"}</button>
+        <button onClick={previousQuestion} disabled={currentQuestionNum === 0}>{currentQuestionNum < category.length ? "BACK" : "REVIEW"}</button>
+        <button onClick={nextQuestion}>{currentQuestionNum+1 === category.length ? "FINISH" : "NEXT"}</button>
     </div>
   )
 }

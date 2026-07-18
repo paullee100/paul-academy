@@ -341,5 +341,16 @@ export const PracticeQuiz = [
         ],
         "This question is asking for the perimeter of the field. Add up all of the sides to find the perimeter: (125 * 2) + (200 * 2) = 650",
         undefined
+    ),
+    new Question(
+        "Tavon's flight is 270 minutes long. How many hours does the flight last?",
+        [
+            { text: "4 hours", correct: false },
+            { text: "4.5 hours", correct: true },
+            { text: "5 hours", correct: false },
+            { text: "5.5 hours", correct: false }
+        ],
+        "",
+        undefined
     )
 ]

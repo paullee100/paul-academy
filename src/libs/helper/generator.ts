@@ -1,7 +1,6 @@
 // https://en.wikipedia.org/wiki/Unicode_subscripts_and_superscripts
 
-import { convert_unicode_to_decimal, generate_multiple_choice_answers, getRandomNumber, getRandomOperator, is_prime } from "./utility";
-// import { evaluate } from 'mathjs'
+import { convert_unicode_to_decimal, generate_multiple_choice_answers, getRandomNumber, getRandomOperator, is_prime, noPemdasAlgorithm, reverseStr, shuntingYardAlgorithm } from "./utility";
 
 /********** EXPONENT **********/
 /**
@@ -21,58 +20,61 @@ export const generate_exponent = (generateNum: number, generateExponentLength: n
         const rng = Math.random();
         const base = getRandomNumber(minBase, maxBase);
         const exponent: string[] = []
-        if (rng < 0.5) {
-            exponent.push(negative);
-        }
         for (let exponentLength = 0; exponentLength < generateExponentLength; exponentLength++) {
             exponent.push(exponents[Math.floor(Math.random()*(exponents.length-5))]);
+        }
+        if (rng < 0.5 && exponent[0] != '\u2070') {
+            exponent.unshift(negative);
         }
         output.push(`${base}${exponent.join('')}`);
     }
     return output;
 }
 
-/**
- * 
- * @param equation 
- * @returns 
- */
-export const eval_math = (equation: string): number[] => {
-    for (let i = 0; i < equation.length; i++) {
-        const firstHalf = equation.slice(0, i);
-        const secondHalf = equation.slice(i+1, equation.length);
-        if (equation[i-1] !== '-' && equation[i].charCodeAt(0) > 177) {
-            equation = firstHalf + equation[i].replace(equation[i], '**' + convert_unicode_to_decimal(equation[i].charCodeAt(0))) + secondHalf;
-
-        } else if (equation[i-1] === '-') {
-            equation = firstHalf + equation[i].replace(equation[i], convert_unicode_to_decimal(equation[i].charCodeAt(0))) + secondHalf;
-
-        }
-    }
-
-    return generate_multiple_choice_answers(evaluate_math(equation));
-}
-
 /********** FACTOR **********/
 /**
+ * Generates a non-prime number factor
  * 
  * @returns 
  */
 export const generate_factor = () => {
     const min: number = 3
-    const max: number = 1000
-    const getNum: number = Math.floor(Math.random()*(max-min+1))+min
+    const max: number = 25
+
+    // prevents a prime number from being generated
+    const num1: number = Math.floor(Math.random()*(max-min+1))+min
+    const num2: number = Math.floor(Math.random()*(max-min+1))+min
+
+    const total = num1 * num2
     const factors: number[] = []
 
-    for (let i = 1; i <= getNum; i++) {
-        if (getNum % i === 0) factors.push(i) 
+    for (let i = 1; i <= total; i++) {
+        if (total % i === 0) factors.push(i) 
     }
-    return [getNum, factors]
+
+    const halfIndex = Math.ceil(factors.length / 2)
+    const firstHalf = factors.slice(0, halfIndex)
+
+    const index = Math.floor(Math.random()*firstHalf.length)
+
+    const answer = [factors[index], factors[factors.length-index-1]]
+    return [total, answer.join(", "), [1, factors[1+Math.floor(Math.random()*(factors.length-1))]].join(", "), -1, -1]
+}
+
+const generate_local_factor = (total: number) => {
+    const factors: number[] = []
+
+    for (let i = 1; i <= total; i++) {
+        if (total % i === 0) factors.push(i) 
+    }
+
+    return factors
 }
 
 /**
+ * Generates prime factors of a number
  * 
- * @returns 
+ * @returns {(string | number)[]}
  */
 export const generate_prime_factor = () => {
     const min: number = 4
@@ -94,7 +96,10 @@ export const generate_prime_factor = () => {
     }
     if (n > 1) factors.push(n)
 
-    return [getNum, factors]
+    const unique = [...new Set(factors)]
+    const hasDupePrime = unique.length === factors.length
+
+    return [getNum, factors.join(", "), hasDupePrime ? factors.slice(1).join(", ") : unique.join(", "), factors.slice(0, -1).join(", "), generate_local_factor(getNum).join(", ")]
 }
 
 /**
@@ -124,7 +129,7 @@ export const generate_greatest_common_factor = () => {
     }
 
     // console.log(generate_multiple_choice_answers(getNumA))
-    return [num[0], num[1], getNumA]
+    return [num[0], num[1], getNumA, Math.max(num[0], num[1]), num[0]+num[1], Math.floor(Math.max(num[0], num[1])/Math.min(num[0], num[1]))]
 }
 
 /**
@@ -133,47 +138,37 @@ export const generate_greatest_common_factor = () => {
  */
 export const generate_least_common_multiple = () => {
     const min: number = 3
-    const max: number = 100
+    const max: number = 25
     let getNumA = Math.floor(Math.random()*(max-min+1))+min
     let getNumB = Math.floor(Math.random()*(max-min+1))+min
 
     while (getNumB === getNumA) getNumB = Math.floor(Math.random()*(max-min+1))+min
 
-    let a = getNumA
-    let b = getNumB
+    const a = getNumA
+    const b = getNumB
     while (getNumB !== 0) {
         let temp = getNumB
         getNumB = getNumA % getNumB
         getNumA = temp
     }
-    return [a, b].concat(generate_multiple_choice_answers((a*b)/getNumA))
-}
 
-/**
- * 
- * @param num 
- * @returns 
- */
-export const get_factors = (num: number) => {
-    const factor = []
-    for (let i = 1; i <= num; i++) {
-        if (num % i === 0) factor.push(i)
-    }
-    return factor
+    return [a, b, (a*b)/getNumA, Math.min(a, b), a+b, Math.abs(a-b) !== Math.min(a, b) ? Math.abs(a-b) : a+b]
 }
 
 /********** PEMDAS **********/
 export const generate_PEMDAS_problems = () => {
-    const numOperands = getRandomNumber(2, 4) // Number of numbers in the problem
+    const numOperands = getRandomNumber(4, 6) // Number of numbers in the problem
     let problem = ''
 
+    const operators: string[] = ['+', '-', '*', '/', '^']
     for (let i = 0; i < numOperands; i++) {
         const number = getRandomNumber(1, 10) // Change range as needed
         problem += number
 
         if (i < numOperands - 1) {
-            const operator = getRandomOperator()
+            const operator = getRandomOperator(operators)
             problem += ` ${operator} `
+            if (operator === '^') operators.pop()
         }
     }
 
@@ -188,19 +183,12 @@ export const generate_PEMDAS_problems = () => {
         problem = parts.join(' ')
     }
 
-    // Replace '^' with '**' for JavaScript exponentiation
-    problem = problem.replace(/\^/g, '**')
+    const answer: string[] = [
+        shuntingYardAlgorithm(problem.replaceAll(' ', '')).toString(), 
+        noPemdasAlgorithm(problem.replaceAll(' ', '').replaceAll('(', '').replaceAll(')', '')).toString(), 
+        shuntingYardAlgorithm(reverseStr(problem.replaceAll(' ', ''))).toString(), 
+        "-1"
+    ]
 
-    const answer: string[] = generate_multiple_choice_answers(evaluate_math(problem)).map(String)
     return [problem].concat(answer)
-}
-
-const evaluate_math = (formula: string) => {
-    formula = formula.replace(/\*\*/g, '^')
-    try {
-        return 1
-        // return evaluate(formula)
-    } catch(e) {
-        return -1
-    }
 }

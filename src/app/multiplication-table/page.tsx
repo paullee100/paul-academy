@@ -81,7 +81,11 @@ const MultiplicationTablePage = () => {
                 {valueArray.map((num: string, colIndex: number) => (
                   <td key={`box${colIndex}`}>
                     {colIndex > 0 ? 
-                      <input type="number" onChange={event => updateValue(event, rowIndex, colIndex)} disabled={disable} className={!disable ? styles.white : (result[rowIndex][colIndex] ? styles.correct : styles.incorrect) }/>
+                      <input 
+                        type="number" 
+                        onChange={event => updateValue(event, rowIndex, colIndex)} 
+                        disabled={disable} 
+                        className={!disable ? styles.white : (result[rowIndex][colIndex] ? styles.correct : styles.incorrect) }/>
                        : 
                       <span>{num}</span>
                     }

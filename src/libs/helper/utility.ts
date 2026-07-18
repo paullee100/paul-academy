@@ -21,6 +21,151 @@ export const shuffle = (array: string[] | number[] | Question[] | { text: string
     return array;
 }
 
+export const reverseStr = (str: string): string => {
+    let reversed = ''
+
+    const tokenizedEquation = tokenize(str)
+    if (!tokenizedEquation) throw new Error("NULL EQUATION")
+
+    for (let i = tokenizedEquation.length-1; i >= 0; i--) {
+        
+        if (tokenizedEquation[i] === '(') reversed += ')'
+        else if (tokenizedEquation[i] === ')') reversed += '('
+        else reversed += tokenizedEquation[i]
+    }
+    // console.log(reversed)
+    return reversed
+}
+
+const tokenize = (equationToTokenize: string) => {
+    return equationToTokenize.match(/\d+(\.\d+)?|[+\-*/^()]/g)
+}
+
+export const noPemdasAlgorithm = (equation: string): number => {
+    const tokenizedEquation = tokenize(equation)
+    if (!tokenizedEquation) throw new Error("NULL EQUATION")
+    
+    const outputQueue: string[] = []
+    const operatorStack: string[] = []
+    for (let token of tokenizedEquation) {
+        if (!isNaN(Number(token))) {
+            outputQueue.push(token)
+        } else {
+            operatorStack.push(token)
+        }
+        if (operatorStack.length > 1) outputQueue.push(operatorStack.pop()!)
+    }
+
+    while (operatorStack.length > 0) {
+        outputQueue.push(operatorStack.pop()!)
+    }
+
+    // console.log(tokenizedEquation)
+    // console.log(outputQueue)
+    return solvePostfix(outputQueue)
+}
+
+interface Precedence {
+    [key: string]: number
+}
+
+interface Associativity {
+    [key: string]: string
+}
+
+
+/**
+ * 
+ * @param equation 
+ */
+export const shuntingYardAlgorithm = (equation: string): number | string => {
+    const precedence: Precedence = {
+        '+': 2,
+        '-': 2,
+        '*': 3,
+        '/': 3,
+        '^': 4,
+    }
+
+    const associativity: Associativity = {
+        '+': 'left',
+        '-': 'left',
+        '*': 'left',
+        '/': 'left',
+        '^': 'right',
+    }
+    const symbols = ['+', '-', '*', '/', '^']
+    const outputQueue: string[] = []
+    const operatorStack: string[] = []
+
+    const tokenizedEquation = tokenize(equation)
+    if (!tokenizedEquation) throw new Error("NULL EQUATION")
+    for (let token of tokenizedEquation) {
+        // check if current token is a number
+        if (!isNaN(Number(token))) {
+            outputQueue.push(token)
+        } else if (symbols.includes(token)) {
+            while (operatorStack[operatorStack.length-1] !== '(' && 
+                (precedence[operatorStack[operatorStack.length-1]] > precedence[token] || 
+                (precedence[operatorStack[operatorStack.length-1]] === precedence[token] &&
+                associativity[token] === 'left'
+                ))) {
+                outputQueue.push(operatorStack.pop()!)
+            }
+            operatorStack.push(token)
+        } else if (token === '(') {
+            operatorStack.push(token)
+        } else if (token === ')') {
+            while (operatorStack[operatorStack.length-1] !== '(') {
+                if (operatorStack.length === 0) return "ERROR: MISMATCH PARENTHESIS"
+                
+                outputQueue.push(operatorStack.pop()!)
+
+            }
+        
+            if (operatorStack[operatorStack.length-1] === '(') operatorStack.pop()
+            // function token check (sin, cos, tan, ...)
+            // if ()
+        }
+    }
+
+    while (operatorStack.length > 0) {
+        if (operatorStack[operatorStack.length-1] === '(') operatorStack.pop()
+        
+        outputQueue.push(operatorStack.pop()!)
+    }
+
+    return solvePostfix(outputQueue)
+}
+
+const solvePostfix = (expression: string[]): number => {
+    const stack: number[] = []
+
+    for (let token of expression) {
+        if (!isNaN(Number(token))) {
+            stack.push(Number(token))
+        } else {
+            
+            const valOne = stack.pop()
+            const valTwo = stack.pop()
+
+            if (valTwo === undefined || valOne === undefined) {
+                return -1
+            }
+
+            switch(token) {
+                case '+': stack.push(valTwo+valOne); break;
+                case '-': stack.push(valTwo-valOne); break;
+                case '*': stack.push(valTwo*valOne); break;
+                case '/': stack.push(valTwo/valOne); break;
+                case '^': stack.push(Math.pow(valTwo, valOne))
+            }
+        }
+    }
+
+    return Number.isInteger(stack[0]) ? stack[0] : Number(stack[0].toFixed(5))
+}
+
 /**
  * 
  * @param unicode 
@@ -87,22 +232,23 @@ export const getRandomNumber = (min: number, max: number) => {
     return Math.floor(Math.random()*(max-min+1))+min
 }
 
-export const getRandomOperator = () => {
-    const operators: string[] = ['+', '-', '*', '/', '^']
+export const getRandomOperator = (operators: string[]) => {
+    // const operators: string[] = ['+', '-', '*', '/', '^']
     const index = Math.floor(Math.random() * operators.length)
     return operators[index]
 }
 
 export const generate_multiple_choice_answers = (correctAnswer: number) => {
-    const choices = [parseFloat(correctAnswer.toFixed(10))]
+    const choices = [parseFloat(correctAnswer.toFixed(10)), 0, 0, 0]
     const delta = Math.max(1, Math.abs(correctAnswer) * 0.1)
 
-    while (choices.length < 4) {
-        let incorrectAnswer = correctAnswer + getRandomNumber(-delta*10, delta*10);
-        incorrectAnswer = parseFloat(incorrectAnswer.toFixed(10))
+    // while (choices.length < 4) {
+    //     console.log("infinite loop?")
+    //     let incorrectAnswer = correctAnswer + getRandomNumber(-delta*10, delta*10);
+    //     incorrectAnswer = parseFloat(incorrectAnswer.toFixed(10))
 
-        if (!choices.includes(incorrectAnswer)) choices.push(Math.abs(incorrectAnswer))
-    }
+    //     if (!choices.includes(incorrectAnswer)) choices.push(Math.abs(incorrectAnswer))
+    // }
 
     return choices
 }
