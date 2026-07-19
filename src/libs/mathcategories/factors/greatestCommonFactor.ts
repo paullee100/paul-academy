@@ -2,13 +2,8 @@ import { generate_greatest_common_factor } from "@/libs/helper/generator";
 import { shuffle } from "@/libs/helper/utility";
 import { Question } from "@/libs/Questions";
 
-const numOfQuestions = 10
+const numOfQuestions = 3
 const greatestCommonFactors = Array.from({ length: numOfQuestions }, _ => generate_greatest_common_factor())
-// [
-//     generate_greatest_common_factor(), 
-//     generate_greatest_common_factor(), 
-//     generate_greatest_common_factor(), 
-//     generate_greatest_common_factor()]
 
 export const GreatestCommonFactor = 
     greatestCommonFactors.map((questions) => (

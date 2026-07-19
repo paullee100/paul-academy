@@ -1,0 +1,39 @@
+.underline {
+    display: inline-block;
+    vertical-align: top;
+}
+
+.label {
+    display: block;
+    text-align: center;
+    border-top: 1px solid black;
+}
+
+.selectionAnswer {
+    display: inline-flex;
+    flex-direction: column;
+}
+
+.selectionAnswer label {
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+}
+
+.explanation {
+    margin-top: 1.5rem;
+    border: 1px solid black;
+    padding: 0 15px;
+}
+
+.correct {
+    background: #9aeabc;
+}
+
+.incorrect {
+    background: #ff9393;
+}
+
+.none {
+    background: white;
+}

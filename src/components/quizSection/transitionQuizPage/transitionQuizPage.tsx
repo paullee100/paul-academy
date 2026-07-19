@@ -54,7 +54,7 @@ const TransitionQuizPage = ({ score, currentQuestionNum, category, isUserFinishe
 
     let finalScore = 0;
     for (let i = 0; i < category.length; i++) {
-      if (category[i].answers[answerChosen[i]].correct) {
+      if (category[i].getAnswers()[answerChosen[i]].correct) {
         finalScore++;
       }
     }

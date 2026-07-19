@@ -3,11 +3,11 @@
 import React, { useState } from 'react'
 import styles from "./quiz.module.css";
 import { getCategory, getCategoryName } from '@/libs/category';
-import { Question } from '@/libs/Questions';
+import { Question, WritingQuestion } from '@/libs/Questions';
 import CategoryList from '@/components/category-list/category-list';
 import InstructionPage from '@/components/instruction-page/instruction-page';
-import QuizSection from '@/components/quiz-section/quizSection';
-import TransitionQuizPage from '@/components/quiz-section/transitionQuizPage/transitionQuizPage';
+import QuizSection from '@/components/quizSection/quizSection';
+import TransitionQuizPage from '@/components/quizSection/transitionQuizPage/transitionQuizPage';
 import { Definition } from '@/libs/mathcategories/definition';
 import { Exponent } from '@/libs/mathcategories/exponent/exponent';
 import { Factor } from '@/libs/mathcategories/factors/factor';
@@ -17,6 +17,7 @@ import { PrimeFactor } from '@/libs/mathcategories/factors/primeFactor';
 import { PEMDAS } from '@/libs/mathcategories/pemdas';
 import { PrimeNumber } from '@/libs/mathcategories/primeNumber';
 import { PracticeQuiz } from '@/libs/mathcategories/practiceQuiz';
+import { Writing } from '@/libs/writingcategories/writing';
 
 interface Categories {
     Definition: Question[],
@@ -28,7 +29,7 @@ interface Categories {
     Pemdas: Question[],
     // primeNumber: PrimeNumber,
     MathPractice: Question[],
-    default: Question[]
+    Writing: WritingQuestion[]
 }
 
 const QuizPage = () => {
@@ -37,7 +38,7 @@ const QuizPage = () => {
   // Keep track of correct answers
   const [score, setScore] = useState(0);
   // Keep track of the current category the user is in
-  const [currentCategory, updateCategory] = useState("");
+  const [currentCategory, updateCategory] = useState("Definition");
   // Instruction page to explain what the current category is about
   const [instructionPage, updateInstructionPage] = useState(true);
   // Determines if the user finishes the quiz
@@ -53,7 +54,7 @@ const QuizPage = () => {
     Pemdas: PEMDAS,
     // primeNumber: PrimeNumber,
     MathPractice: PracticeQuiz,
-    default: Definition
+    Writing: Writing
   }
   let category: Question[] = getCategory(categoryList, currentCategory);
 
@@ -72,6 +73,7 @@ const QuizPage = () => {
         setIsUserFinishedQuiz={setIsUserFinishedQuiz} 
         updateAnswerChosen={updateAnswerChosen}/>
 
+      {/* Main */}
       <div className={styles.content}>
         <div className={styles.app}>
 
