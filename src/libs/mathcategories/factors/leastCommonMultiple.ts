@@ -1,13 +1,13 @@
 import { generate_least_common_multiple } from "@/libs/helper/generator";
 import { shuffle } from "@/libs/helper/utility";
-import { Question } from "@/libs/Questions";
+import { MathQuestion } from "@/libs/Questions";
 
 const numOfQuestions = 4
 const leastCommonMultiple = Array.from({ length: numOfQuestions }, _ => generate_least_common_multiple())
 
 export const LeastCommonMultiple = 
     leastCommonMultiple.map((questions) => (
-        new Question(
+        new MathQuestion(
         "What are the least common multiple for " + questions[0] + " and " + questions[1],
         shuffle([
             { text: questions[2].toString(), correct: true },

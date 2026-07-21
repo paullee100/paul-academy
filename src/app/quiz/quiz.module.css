@@ -1,11 +1,10 @@
 .container {
     display: flex;
-    overflow: none;
 }
 
 .content {
-    width: 100%;
-    overflow-y: none;
+    width: 85vw;
+    overflow: none;
 }
 
 .app {
@@ -21,4 +20,10 @@
 
 .app h2 {
     flex-basis: 5%;
+}
+
+.transitionButton {
+    position: absolute;
+    bottom: 0;
+    margin-left: 10px;
 }

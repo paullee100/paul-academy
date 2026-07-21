@@ -1,15 +1,15 @@
-import { Question, WritingQuestion } from "./Questions";
+import { Question, WritingQuestion, MathQuestion } from "./Questions";
 
 interface Categories {
     Definition: Question[],
-    Exponent: Question[],
-    Factor: Question[],
-    GreatestCommonFactor: Question[],
-    LeastCommonMultiple: Question[],
-    PrimeFactor: Question[],
-    Pemdas: Question[],
+    Exponent: MathQuestion[],
+    Factor: MathQuestion[],
+    GreatestCommonFactor: MathQuestion[],
+    LeastCommonMultiple: MathQuestion[],
+    PrimeFactor: MathQuestion[],
+    Pemdas: MathQuestion[],
     // primeNumber: PrimeNumber,
-    MathPractice: Question[],
+    MathPractice: MathQuestion[],
     Writing: WritingQuestion[]
 }
 

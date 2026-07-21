@@ -66,7 +66,7 @@ const TransitionQuizPage = ({ score, currentQuestionNum, category, isUserFinishe
   return (
     <div className={styles.changePageButton}>
         <button onClick={previousQuestion} disabled={currentQuestionNum === 0}>{currentQuestionNum < category.length ? "BACK" : "REVIEW"}</button>
-        <button onClick={nextQuestion}>{currentQuestionNum+1 === category.length ? "FINISH" : "NEXT"}</button>
+        {currentQuestionNum < category.length && <button onClick={nextQuestion}>{currentQuestionNum+1 === category.length ? "FINISH" : "NEXT"}</button>}
     </div>
   )
 }

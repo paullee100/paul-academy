@@ -1,4 +1,4 @@
-import { Question, WritingQuestion } from "../Questions"
+import { Question, WritingQuestion, MathQuestion } from "../Questions"
 
 const CHAR = {
     square_root: '\u221A',
@@ -11,7 +11,8 @@ const CHAR = {
 export type QUIZSECTION = {
     score: number
     currentQuestionNum: number
-    category: Question[]
+    setCurrentQuestionNum: Function
+    category: MathQuestion[]
     /** Check if user is finished, true if finished and false otherwise */
     isUserFinished: boolean
     answerChosen: any[]

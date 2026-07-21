@@ -1,13 +1,13 @@
 import { generate_prime_factor } from "@/libs/helper/generator";
 import { shuffle } from "@/libs/helper/utility";
-import { Question } from "@/libs/Questions";
+import { MathQuestion } from "@/libs/Questions";
 
 const numOfQuestions = 4
 const primeFactors = Array.from({ length: numOfQuestions }, _ => generate_prime_factor())
 
 export const PrimeFactor = 
     primeFactors.map((questions) => (
-        new Question(
+        new MathQuestion(
             "What are the prime factors for " + questions[0],
             shuffle([
                 { text: questions[1].toString(), correct: true },

@@ -3,7 +3,7 @@
 import React, { useState } from 'react'
 import styles from "./quiz.module.css";
 import { getCategory, getCategoryName } from '@/libs/category';
-import { Question, WritingQuestion } from '@/libs/Questions';
+import { Question, WritingQuestion, MathQuestion } from '@/libs/Questions';
 import CategoryList from '@/components/category-list/category-list';
 import InstructionPage from '@/components/instruction-page/instruction-page';
 import QuizSection from '@/components/quizSection/quizSection';
@@ -21,14 +21,14 @@ import { Writing } from '@/libs/writingcategories/writing';
 
 interface Categories {
     Definition: Question[],
-    Exponent: Question[],
-    Factor: Question[],
-    GreatestCommonFactor: Question[],
-    LeastCommonMultiple: Question[],
-    PrimeFactor: Question[],
-    Pemdas: Question[],
+    Exponent: MathQuestion[],
+    Factor: MathQuestion[],
+    GreatestCommonFactor: MathQuestion[],
+    LeastCommonMultiple: MathQuestion[],
+    PrimeFactor: MathQuestion[],
+    Pemdas: MathQuestion[],
     // primeNumber: PrimeNumber,
-    MathPractice: Question[],
+    MathPractice: MathQuestion[],
     Writing: WritingQuestion[]
 }
 
@@ -85,21 +85,24 @@ const QuizPage = () => {
             <QuizSection 
               score={score} 
               currentQuestionNum={currentQuestionNum} 
+              setCurrentQuestionNum={setCurrentQuestionNum}
               category={category} isUserFinishedQuiz={isUserFinishedQuiz} 
               answerChosen={answerChosen} 
               updateAnswerChosen={updateAnswerChosen}/>
           }
           
           {!instructionPage && 
-            <TransitionQuizPage 
-              score={score} 
-              currentQuestionNum={currentQuestionNum} 
-              category={category} 
-              isUserFinishedQuiz={isUserFinishedQuiz} 
-              answerChosen={answerChosen} 
-              setCurrentQuestionNum={setCurrentQuestionNum} 
-              setIsUserFinishedQuiz={setIsUserFinishedQuiz} 
-              setScore={setScore} />}
+            <div className={styles.transitionButton}>
+              <TransitionQuizPage 
+                score={score} 
+                currentQuestionNum={currentQuestionNum} 
+                category={category} 
+                isUserFinishedQuiz={isUserFinishedQuiz} 
+                answerChosen={answerChosen} 
+                setCurrentQuestionNum={setCurrentQuestionNum} 
+                setIsUserFinishedQuiz={setIsUserFinishedQuiz} 
+                setScore={setScore} />
+            </div>}
         </div>
       </div>
     </div>

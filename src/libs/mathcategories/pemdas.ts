@@ -1,11 +1,11 @@
 import { generate_PEMDAS_problems } from "../helper/generator"
-import { Question } from "../Questions"
+import { MathQuestion } from "../Questions"
 
 const pemdas = [generate_PEMDAS_problems(), generate_PEMDAS_problems(), generate_PEMDAS_problems(), generate_PEMDAS_problems(), generate_PEMDAS_problems()]
 
 export const PEMDAS = 
     pemdas.map((question, index) => (
-        new Question(
+        new MathQuestion(
             "Solve " + question[0],
             [
                 { text: question[1], correct: true },

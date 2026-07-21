@@ -4,7 +4,7 @@ import React from 'react'
 import styles from "./category-list.module.css";
 import Link from 'next/link';
 import { getCategory } from '@/libs/category';
-import { Question, WritingQuestion } from '@/libs/Questions';
+import { Question, WritingQuestion, MathQuestion } from '@/libs/Questions';
 
 interface Props {
     categoryList: Categories;
@@ -18,14 +18,14 @@ interface Props {
 
 interface Categories {
     Definition: Question[],
-    Exponent: Question[],
-    Factor: Question[],
-    GreatestCommonFactor: Question[],
-    LeastCommonMultiple: Question[],
-    PrimeFactor: Question[],
-    Pemdas: Question[],
+    Exponent: MathQuestion[],
+    Factor: MathQuestion[],
+    GreatestCommonFactor: MathQuestion[],
+    LeastCommonMultiple: MathQuestion[],
+    PrimeFactor: MathQuestion[],
+    Pemdas: MathQuestion[],
     // primeNumber: PrimeNumber,
-    MathPractice: Question[],
+    MathPractice: MathQuestion[],
     Writing: WritingQuestion[]
 }
 

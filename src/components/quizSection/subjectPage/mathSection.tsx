@@ -1,4 +1,4 @@
-import { Question } from '@/libs/Questions'
+import { MathQuestion } from '@/libs/Questions'
 import styles from './section.module.css'
 import React from 'react'
 import Image from 'next/image'
@@ -6,7 +6,7 @@ import Image from 'next/image'
 interface Props {
     score: number
     currentQuestionNum: number
-    category: Question[]
+    category: MathQuestion[]
     isUserFinishedQuiz: boolean
     answerChosen: any[]
     updateAnswerChosen: Function
@@ -21,7 +21,7 @@ const MathSection = (QUIZSECTION: Props) => {
     }
 
     return (
-        <div>
+        <div className={styles.quiz}>
             {QUIZSECTION.currentQuestionNum < QUIZSECTION.category.length && QUIZSECTION.category[QUIZSECTION.currentQuestionNum].getImage() ?
             <Image src={QUIZSECTION.category[QUIZSECTION.currentQuestionNum].getImage()!} alt="" width={300} height={200}/>
             :
@@ -45,7 +45,8 @@ const MathSection = (QUIZSECTION: Props) => {
                                 type="radio" 
                                 id={`selection${index}`} 
                                 checked={QUIZSECTION.answerChosen[QUIZSECTION.currentQuestionNum] === index} 
-                                onChange={_ => clickAnswer(index)} />
+                                onChange={_ => clickAnswer(index)}
+                                className={styles.answerInput} />
                             
                             <label htmlFor={`selection${index}`}>
                                 <Image src={answer.text} alt="" width={200} height={100} />
@@ -65,7 +66,8 @@ const MathSection = (QUIZSECTION: Props) => {
                             type="radio" 
                             id={`selection${index}`} 
                             checked={QUIZSECTION.answerChosen[QUIZSECTION.currentQuestionNum] === index} 
-                            onChange={_ => clickAnswer(index)} />
+                            onChange={_ => clickAnswer(index)} 
+                            className={styles.answerInput} />
                         
                         <label 
                             htmlFor={`selection${index}`}>
