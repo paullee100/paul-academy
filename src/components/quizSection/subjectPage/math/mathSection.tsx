@@ -1,5 +1,5 @@
 import { MathQuestion } from '@/libs/Questions'
-import styles from './section.module.css'
+import styles from '../section.module.css'
 import React from 'react'
 import Image from 'next/image'
 
@@ -22,23 +22,25 @@ const MathSection = (QUIZSECTION: Props) => {
 
     return (
         <div className={styles.quiz}>
-            {QUIZSECTION.currentQuestionNum < QUIZSECTION.category.length && QUIZSECTION.category[QUIZSECTION.currentQuestionNum].getImage() ?
+            {QUIZSECTION.category[QUIZSECTION.currentQuestionNum].getImage() ?
             <Image src={QUIZSECTION.category[QUIZSECTION.currentQuestionNum].getImage()!} alt="" width={300} height={200}/>
             :
             <div></div>
             }
 
-            {/* <h2>
-                {!QUIZSECTION.isUserFinishedQuiz ? 
+            {/* QUESTIONS/FINISHED QUIZ */}
+            <h2>
+                {QUIZSECTION.currentQuestionNum < QUIZSECTION.category.length ? 
                 QUIZSECTION.category[QUIZSECTION.currentQuestionNum].getQuestion() : 
                 `You scored ${QUIZSECTION.score} out of ${QUIZSECTION.category.length} - ${Math.round(QUIZSECTION.score/QUIZSECTION.category.length*100)}%`}
-            </h2> */}
+            </h2>
 
+            {/* MULTIPLE CHOICE */}
             {QUIZSECTION.currentQuestionNum < QUIZSECTION.category.length ? 
                 <div className={styles.selectionAnswer}>
                 {QUIZSECTION.category[QUIZSECTION.currentQuestionNum].getAnswers().map((answer, index) => (
                     answer.text[0] === '/' ?
-                        <div key={index} className={QUIZSECTION.isUserFinishedQuiz ? styles.none : QUIZSECTION.answerChosen[index] === index ? styles.correct : styles.incorrect}>
+                        <div key={index} className={!QUIZSECTION.isUserFinishedQuiz ? styles.none : QUIZSECTION.answerChosen[index] === index ? styles.correct : styles.incorrect}>
                             <input 
                                 disabled={QUIZSECTION.isUserFinishedQuiz} 
                                 name="selection" 

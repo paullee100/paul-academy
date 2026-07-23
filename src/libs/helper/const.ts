@@ -17,9 +17,12 @@ export type QUIZSECTION = {
     isUserFinished: boolean
     answerChosen: any[]
     updateAnswerChosen: Function
+    isOnInstructionPage: boolean
+    setIsUserFinishedQuiz: Function
+    setScore: Function
 }
 
-interface Categories {
+export interface Categories {
     Definition: Question[],
     Exponent: Question[],
     Factor: Question[],

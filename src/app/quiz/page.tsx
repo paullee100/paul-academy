@@ -3,7 +3,7 @@
 import React, { useState } from 'react'
 import styles from "./quiz.module.css";
 import { getCategory, getCategoryName } from '@/libs/category';
-import { Question, WritingQuestion, MathQuestion } from '@/libs/Questions';
+import { Question, WritingQuestion, MathQuestion, ReadingQuestion } from '@/libs/Questions';
 import CategoryList from '@/components/category-list/category-list';
 import InstructionPage from '@/components/instruction-page/instruction-page';
 import QuizSection from '@/components/quizSection/quizSection';
@@ -18,6 +18,7 @@ import { PEMDAS } from '@/libs/mathcategories/pemdas';
 import { PrimeNumber } from '@/libs/mathcategories/primeNumber';
 import { PracticeQuiz } from '@/libs/mathcategories/practiceQuiz';
 import { Writing } from '@/libs/writingcategories/writing';
+import { Reading } from '@/libs/readingcategories/reading';
 
 interface Categories {
     Definition: Question[],
@@ -29,7 +30,8 @@ interface Categories {
     Pemdas: MathQuestion[],
     // primeNumber: PrimeNumber,
     MathPractice: MathQuestion[],
-    Writing: WritingQuestion[]
+    Writing: WritingQuestion[],
+    Reading: ReadingQuestion[],
 }
 
 const QuizPage = () => {
@@ -40,7 +42,7 @@ const QuizPage = () => {
   // Keep track of the current category the user is in
   const [currentCategory, updateCategory] = useState("Definition");
   // Instruction page to explain what the current category is about
-  const [instructionPage, updateInstructionPage] = useState(true);
+  const [isOnInstructionPage, updateInstructionPage] = useState(true);
   // Determines if the user finishes the quiz
   const [isUserFinishedQuiz, setIsUserFinishedQuiz] = useState(false);
   
@@ -54,7 +56,8 @@ const QuizPage = () => {
     Pemdas: PEMDAS,
     // primeNumber: PrimeNumber,
     MathPractice: PracticeQuiz,
-    Writing: Writing
+    Writing: Writing,
+    Reading: Reading
   }
   let category: Question[] = getCategory(categoryList, currentCategory);
 
@@ -77,7 +80,7 @@ const QuizPage = () => {
       <div className={styles.content}>
         <div className={styles.app}>
 
-          {instructionPage ? 
+          {isOnInstructionPage ? 
             <InstructionPage 
               name={getCategoryName(currentCategory)} 
               updatePage={updateInstructionPage} />
@@ -88,21 +91,11 @@ const QuizPage = () => {
               setCurrentQuestionNum={setCurrentQuestionNum}
               category={category} isUserFinishedQuiz={isUserFinishedQuiz} 
               answerChosen={answerChosen} 
-              updateAnswerChosen={updateAnswerChosen}/>
+              updateAnswerChosen={updateAnswerChosen}
+              isOnInstructionPage={isOnInstructionPage}
+              setIsUserFinishedQuiz={setIsUserFinishedQuiz}
+              setScore={setScore} />
           }
-          
-          {!instructionPage && 
-            <div className={styles.transitionButton}>
-              <TransitionQuizPage 
-                score={score} 
-                currentQuestionNum={currentQuestionNum} 
-                category={category} 
-                isUserFinishedQuiz={isUserFinishedQuiz} 
-                answerChosen={answerChosen} 
-                setCurrentQuestionNum={setCurrentQuestionNum} 
-                setIsUserFinishedQuiz={setIsUserFinishedQuiz} 
-                setScore={setScore} />
-            </div>}
         </div>
       </div>
     </div>

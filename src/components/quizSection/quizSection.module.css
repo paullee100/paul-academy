@@ -7,6 +7,18 @@
     padding-bottom: 30px;
 }
 
+.questionBtn {
+    margin: 5px 10px;
+    width: 30px;
+    height: 30px;
+    text-align: center;
+    cursor: pointer;
+    background-color: gray;
+    color: white;
+    font-weight: bolder;
+    border-radius: 5px;
+}
+
 .quiz {
     font-size: 24px;
     padding: 20px 0;
@@ -32,16 +44,4 @@
 
 .explanation {
     display: none;
-}
-
-.correct {
-    background: #9aeabc;
-}
-
-.incorrect {
-    background: #ff9393;
-}
-
-.none {
-    background: white;
 }

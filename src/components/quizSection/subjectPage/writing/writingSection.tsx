@@ -3,6 +3,8 @@
 import { Question, WritingQuestion } from '@/libs/Questions'
 import React, { Fragment } from 'react'
 import styles from './writingSection.module.css'
+import Sentence from './sentence'
+import ExcerptPrompt from './excerptPrompt'
 
 interface Props {
     score: number
@@ -24,55 +26,44 @@ const WritingSection = (QUIZSECTION: Props) => {
     const isUnderlinedQuestion = !QUIZSECTION.isUserFinishedQuiz && QUIZSECTION.category[QUIZSECTION.currentQuestionNum].getSentence().includes("<")
     
     const regex = /(<[^>]+>)/g
-    const match = QUIZSECTION.category[QUIZSECTION.currentQuestionNum] !== undefined ? [...QUIZSECTION.category[QUIZSECTION.currentQuestionNum].getSentence().split(regex)] : []
-
-    const alphabet = ["A", "B", "C", "D"]
-    let alphabetIndex = 0
+    const match: string[] = QUIZSECTION.category[QUIZSECTION.currentQuestionNum] !== undefined ? [...QUIZSECTION.category[QUIZSECTION.currentQuestionNum].getSentence().split(regex)] : []
 
     return (
         <div>
 
+            {!QUIZSECTION.isUserFinishedQuiz && QUIZSECTION.category[QUIZSECTION.currentQuestionNum].getEssay() ? 
+                <ExcerptPrompt category={QUIZSECTION.category[QUIZSECTION.currentQuestionNum]} />
+                :
+            
             <div>
+                <h3>
+                    {!QUIZSECTION.isUserFinishedQuiz ? 
+                    QUIZSECTION.category[QUIZSECTION.currentQuestionNum].getQuestion() : 
+                    QUIZSECTION.currentQuestionNum < QUIZSECTION.category.length ?
+                    QUIZSECTION.category[QUIZSECTION.currentQuestionNum].getQuestion() :
+                    `You scored ${QUIZSECTION.score} out of ${QUIZSECTION.category.length} - ${Math.round(QUIZSECTION.score/QUIZSECTION.category.length*100)}%`}
+                </h3>
+
                 {!QUIZSECTION.isUserFinishedQuiz ?
                     (isUnderlinedQuestion ? 
-                        <div>
-                            {match.map((val, index) => (
-                                <Fragment key={index}>
-                                    {val.includes("<") ? 
-                                    <span className={styles.underline}>
-                                        {val.replace(/[\<\>]/g, "")}
-                                        <span className={styles.label}>{alphabet[alphabetIndex++]}</span>
-                                    </span> : 
-                                    val
-                                    }
-                                </Fragment>
-                            ))}
-                        </div> :
-                    QUIZSECTION.category[QUIZSECTION.currentQuestionNum].getSentence()) :
+                        <Sentence match={match} /> :
+                    QUIZSECTION.category[QUIZSECTION.currentQuestionNum].getSentence()
+                    ) :
+                
                 <div>
                 {QUIZSECTION.currentQuestionNum < QUIZSECTION.category.length ?
                     (isUnderlinedQuestion ? 
-                        <div>
-                            {match.map((val, index) => (
-                                <Fragment key={index}>
-                                    {val.includes("<") ? 
-                                    <span className={styles.underline}>
-                                        {val.replace(/[\<\>]/g, "")}
-                                        <span className={styles.label}>{alphabet[alphabetIndex++]}</span>
-                                    </span> : 
-                                    val
-                                    }
-                                </Fragment>
-                            ))}
-                        </div>:
+                        <Sentence match={match} />
+                        :
                         QUIZSECTION.category[QUIZSECTION.currentQuestionNum].getSentence()) : 
                         <></>
                 }
                 </div>}
-            </div>
+            </div>}
 
             <br />
 
+            {/* ANSWER OPTIONS */}
             {QUIZSECTION.currentQuestionNum < QUIZSECTION.category.length ?
             <div className={styles.selectionAnswer}>
                 {QUIZSECTION.category[QUIZSECTION.currentQuestionNum].getAnswers().map((answer, index) => (

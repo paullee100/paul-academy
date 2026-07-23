@@ -4,7 +4,7 @@ import React from 'react'
 import styles from "./category-list.module.css";
 import Link from 'next/link';
 import { getCategory } from '@/libs/category';
-import { Question, WritingQuestion, MathQuestion } from '@/libs/Questions';
+import { Question, WritingQuestion, MathQuestion, ReadingQuestion } from '@/libs/Questions';
 
 interface Props {
     categoryList: Categories;
@@ -26,7 +26,8 @@ interface Categories {
     Pemdas: MathQuestion[],
     // primeNumber: PrimeNumber,
     MathPractice: MathQuestion[],
-    Writing: WritingQuestion[]
+    Writing: WritingQuestion[],
+    Reading: ReadingQuestion[]
 }
 
 const CategoryList = (CATEGORYLIST: Props) => {

@@ -38,3 +38,25 @@
 .none {
     background: white;
 }
+
+.none, .correct, .incorrect {
+    border: 1px solid black;
+    border-radius: 5px;
+    margin: 10px;
+    padding: 10px;
+    display: flex;
+    gap: 15px;
+    width: 50vw;
+}
+
+.answerInput {
+    border: 1px solid black;
+    padding: 0 10px;
+}
+
+.none label {
+    /* border: 1px solid black; */
+    border-radius: 5px;
+    width: 100%;
+    height: 100%;
+}

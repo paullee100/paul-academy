@@ -62,11 +62,3 @@
   opacity: .65;
   pointer-events: none;
 }
-
-.correct {
-    background: #9aeabc;
-}
-
-.incorrect {
-    background: #ff9393;
-}
