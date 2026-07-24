@@ -95,7 +95,7 @@ export class MathQuestion extends Question {
 
     #image
 
-    constructor(question: string, answers: {text: string, correct: boolean}[], explanation: string, image: string | undefined) {
+    constructor(question: string, answers: {text: string, correct: boolean}[], explanation: string, image: string = "") {
         super("math", question, answers, explanation)
         this.#image = image
     }

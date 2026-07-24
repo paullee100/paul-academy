@@ -16,6 +16,5 @@ export const PrimeFactor =
                 { text: questions[4].toString(), correct: false },
             ]),
             "",
-            undefined
         )
     ))

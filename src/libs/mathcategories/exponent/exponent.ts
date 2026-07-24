@@ -19,6 +19,5 @@ export const Exponent =
             { text: answerExponents[index][3].toString(), correct: false }
             ]),
             "",
-            undefined
         )
     ))

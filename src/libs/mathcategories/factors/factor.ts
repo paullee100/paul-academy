@@ -15,6 +15,5 @@ export const Factor =
             { text: questions[4].toString(), correct: false }
         ],
         "",
-        undefined
         )
     ))

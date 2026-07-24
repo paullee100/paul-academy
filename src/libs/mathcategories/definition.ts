@@ -1,7 +1,7 @@
-import { Question } from "../Questions";
+import { MathQuestion } from "../Questions";
 
 export const Definition = [
-    new Question( 
+    new MathQuestion( 
         "What is an integer?", 
         [
             { text: "Any positive or negative whole number, including zero. Integers do not include fractions (1/3), decimals (0.56), or mixed numbers (7*(3/4))", correct: true},
@@ -12,7 +12,7 @@ export const Definition = [
         ],
         "Integers are whole numbers including zero.",
     ),
-    new Question(
+    new MathQuestion(
         "A perfect square is ",
         [
             { text: "another way of writing a fractional exponent.", correct: false},
@@ -22,7 +22,7 @@ export const Definition = [
         ],
         "Result of the square root will equal to an integer value.",
     ),
-    new Question(
+    new MathQuestion(
         "What is the definition of a prime number?",
         [
             { text: "A number that has an integer for its square root. There are 10 perfect squares from 1 to 100.", correct: false},
@@ -32,7 +32,7 @@ export const Definition = [
         ],
         "Definition is the green answer",
     ),
-    new Question(
+    new MathQuestion(
         "What is the definition of a composite number?",
         [
             { text: "A superscript number placed next to another number at the top right.", correct: false},
@@ -42,7 +42,7 @@ export const Definition = [
         ],
         "Definition is the green answer",
     ),
-    new Question(
+    new MathQuestion(
         "What is the definition of a even number?",
         [
             { text: "Cannot be written as fractions or decimals because the number of decimal places is infinite and there is no recurring pattern of digits within the number.", correct: false},
@@ -52,7 +52,7 @@ export const Definition = [
         ],
         "Definition is the green answer",
     ),
-    new Question(
+    new MathQuestion(
         "Rational numbers ",
         [
             { text: "is a superscript number placed next to another number at the top right.", correct: false},
@@ -62,7 +62,7 @@ export const Definition = [
         ],
         "Definition is the green answer",
     ),
-    new Question(
+    new MathQuestion(
         "Irrational numbers ",
         [
             { text: "cannot be written as fractions or decimals because the number of decimal places is infinite and there is no recurring pattern of digits within the number.", correct: true},

@@ -14,6 +14,5 @@ export const PEMDAS =
                 { text: question[4], correct: false }
             ],
             "",
-            undefined
         )
     ))

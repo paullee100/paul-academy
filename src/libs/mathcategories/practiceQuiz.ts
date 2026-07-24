@@ -10,7 +10,6 @@ export const PracticeQuiz = [
             { text: "6,365", correct: false }
         ],
         "",
-        undefined
     ),
     new MathQuestion(
         "The length of a bulletin board is 5½ feet. What is the length of the bulletin board in inches?",
@@ -21,7 +20,6 @@ export const PracticeQuiz = [
             { text: "66 inches", correct: true }
         ],
         "",
-        undefined
     ),
     new MathQuestion(
         "Which of the following is a hexagon?",
@@ -32,7 +30,6 @@ export const PracticeQuiz = [
             { text: "/paul-academy/practicea/Question33d.png", correct: true }
         ],
         "",
-        undefined
     ),
     new MathQuestion(
         "What is the sum of 7 and 5?",
@@ -43,7 +40,6 @@ export const PracticeQuiz = [
             { text: "35", correct: false }
         ],
         "",
-        undefined
     ),
     new MathQuestion(
         "Which of the following is equivalent to half a dollar?",
@@ -54,7 +50,6 @@ export const PracticeQuiz = [
             { text: "50 cents", correct: false }
         ],
         "",
-        undefined
     ),
     new MathQuestion(
         "Which of the following is the closest approximation to 23.62 + 26.81 + 24.12?",
@@ -65,7 +60,6 @@ export const PracticeQuiz = [
             { text: "100", correct: false }
         ],
         "",
-        undefined
     ),
     new MathQuestion(
         "Which of the following numbers is greater than 0.25?",
@@ -76,7 +70,6 @@ export const PracticeQuiz = [
             { text: "0.2", correct: false }
         ],
         "",
-        undefined
     ),
     new MathQuestion(
         "In the partially completed multiplication table shown above, what value should be placed in the shaded box?",
@@ -98,7 +91,6 @@ export const PracticeQuiz = [
             { text: "4 = 9", correct: false }
         ],
         "",
-        undefined
     ),
     new MathQuestion(
         "42.58 + 1.5 = ",
@@ -109,7 +101,6 @@ export const PracticeQuiz = [
             { text: "44.08", correct: true }
         ],
         "",
-        undefined
     ),
     new MathQuestion(
         "For a lesson in measurement, a student is assigned to find the perimeter of Mr. Gray's rectangular classroom, shown above. Which of the following would correctly determine the perimeter of the classroom?",
@@ -131,7 +122,6 @@ export const PracticeQuiz = [
             { text: "3 x 3 x 3 x 3", correct: true }
         ],
         "",
-        undefined
     ),
     new MathQuestion(
         "On the number line above, where is ³⁄₂ located?",
@@ -175,7 +165,6 @@ export const PracticeQuiz = [
             { text: "56", correct: false }
         ],
         "",
-        undefined
     ),
     new MathQuestion(
         "Which of the following numbers has a 2 in the hundredths place?",
@@ -186,7 +175,6 @@ export const PracticeQuiz = [
             { text: "1,007.23", correct: false }
         ],
         "",
-        undefined
     ),
     new MathQuestion(
         "Which of the following is NOT equivalent to 1/2?",
@@ -197,7 +185,6 @@ export const PracticeQuiz = [
             { text: "1.5/3.0", correct: false }
         ],
         "",
-        undefined
     ),
     new MathQuestion(
         "In the xy-plane above, what are the coordinates of point T?",
@@ -219,7 +206,6 @@ export const PracticeQuiz = [
             { text: "75 minutes", correct: false }
         ],
         "",
-        undefined
     ),
     new MathQuestion(
         "In the list above, the first number is 5 and each number after that is 15 more than the previous number. If the pattern is continued, what will be the seventh number in the list?",
@@ -241,7 +227,6 @@ export const PracticeQuiz = [
             { text: "$72.00", correct: true }
         ],
         "",
-        undefined
     ),
     new MathQuestion(
         "The table above shows Cindy's test scores on each of 4 tests. Her final science grade is equal to the average (arithmetic mean) of these scores. What is Cindy's final science grade?",
@@ -263,7 +248,6 @@ export const PracticeQuiz = [
             { text: "1", correct: false }
         ],
         "",
-        undefined
     ),
     new MathQuestion(
         "Which of the following would most likely be the concept that the pattern above is used to teach?",
@@ -296,7 +280,6 @@ export const PracticeQuiz = [
             { text: "4", correct: true }
         ],
         "",
-        undefined
     ),
     new MathQuestion(
         "5 + 75 / 25 - 5 = ",
@@ -307,7 +290,6 @@ export const PracticeQuiz = [
             { text: "-1.8", correct: false }
         ],
         "",
-        undefined
     ),
     new MathQuestion(
         "According to the graph above, the total number of books borrowed from the school library for the four months shown is ",
@@ -340,7 +322,6 @@ export const PracticeQuiz = [
             { text: "650", correct: true }
         ],
         "This question is asking for the perimeter of the field. Add up all of the sides to find the perimeter: (125 * 2) + (200 * 2) = 650",
-        undefined
     ),
     new MathQuestion(
         "Tavon's flight is 270 minutes long. How many hours does the flight last?",
@@ -351,6 +332,5 @@ export const PracticeQuiz = [
             { text: "5.5 hours", correct: false }
         ],
         "",
-        undefined
     )
 ]

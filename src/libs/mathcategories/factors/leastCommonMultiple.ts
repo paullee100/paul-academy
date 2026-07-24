@@ -16,6 +16,5 @@ export const LeastCommonMultiple =
             { text: questions[5].toString(), correct: false }
         ]),
         "",
-        undefined
         )
     ))
