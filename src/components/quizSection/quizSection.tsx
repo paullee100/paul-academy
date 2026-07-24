@@ -54,7 +54,15 @@ const QuizSection = (QUIZSECTION: Props) => {
 
         return (
             <div>
-                "ERROR"
+                <div>
+                    {className}
+                </div>
+                <div>
+                    {subjectName}
+                </div>
+                <div>
+                    "ERROR"
+                </div>
             </div>
         )
     }
