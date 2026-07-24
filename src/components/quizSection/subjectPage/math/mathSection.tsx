@@ -14,68 +14,77 @@ interface Props {
 
 const MathSection = (QUIZSECTION: Props) => {
 
+    const {score, currentQuestionNum, category, isUserFinishedQuiz, 
+        answerChosen, updateAnswerChosen } = QUIZSECTION
+
+    const isInQuizPortion = currentQuestionNum < category.length
+
     const clickAnswer = (index: number) => {
-        const updateArray = [...QUIZSECTION.answerChosen];
-        updateArray[QUIZSECTION.currentQuestionNum] = index;
-        QUIZSECTION.updateAnswerChosen(updateArray);
+        const updateArray = [...answerChosen];
+        updateArray[currentQuestionNum] = index;
+        updateAnswerChosen(updateArray);
+    }
+
+    const highlightAnswers = (answer: { text: string, correct: boolean }, index: number) => {
+        let styling = `${styles.none}`
+
+        if (!isUserFinishedQuiz) {
+            return styling
+        }
+
+        if (answer.correct) {
+            styling = `${styles.correct}`
+        } else if (answerChosen[currentQuestionNum] === index) {
+            styling = `${styles.incorrect}`
+        }
+
+        return styling
+    }
+
+    const createAnswers = (answer: { text: string, correct: boolean }, index: number) => {
+
+        const imageOrText = answer.text[0] === '/' ? 
+            `${<Image src={answer.text} alt="" width={200} height={100} />}` :
+            `${answer.text}`
+
+        return (
+           <div key={index} className={highlightAnswers(answer, index)}>
+                    <input 
+                    disabled={isUserFinishedQuiz} 
+                    name="selection" 
+                    type="radio" 
+                    id={`selection${index}`} 
+                    checked={answerChosen[currentQuestionNum] === index} 
+                    onChange={_ => clickAnswer(index)}
+                    className={styles.answerInput} />
+                            
+                <label htmlFor={`selection${index}`}>
+                    {imageOrText}
+                </label>
+            </div>
+        )
     }
 
     return (
         <div className={styles.quiz}>
-            {QUIZSECTION.category[QUIZSECTION.currentQuestionNum].getImage() ?
-            <Image src={QUIZSECTION.category[QUIZSECTION.currentQuestionNum].getImage()!} alt="" width={300} height={200}/>
+            {isInQuizPortion && category[currentQuestionNum].getImage() ?
+            <Image src={category[currentQuestionNum].getImage()!} alt="" width={300} height={200}/>
             :
             <div></div>
             }
 
             {/* QUESTIONS/FINISHED QUIZ */}
             <h2>
-                {QUIZSECTION.currentQuestionNum < QUIZSECTION.category.length ? 
-                QUIZSECTION.category[QUIZSECTION.currentQuestionNum].getQuestion() : 
-                `You scored ${QUIZSECTION.score} out of ${QUIZSECTION.category.length} - ${Math.round(QUIZSECTION.score/QUIZSECTION.category.length*100)}%`}
+                {isInQuizPortion ? 
+                category[currentQuestionNum].getQuestion() : 
+                `You scored ${score} out of ${category.length} - ${Math.round(score/category.length*100)}%`}
             </h2>
 
             {/* MULTIPLE CHOICE */}
-            {QUIZSECTION.currentQuestionNum < QUIZSECTION.category.length ? 
+            {isInQuizPortion ? 
                 <div className={styles.selectionAnswer}>
-                {QUIZSECTION.category[QUIZSECTION.currentQuestionNum].getAnswers().map((answer, index) => (
-                    answer.text[0] === '/' ?
-                        <div key={index} className={!QUIZSECTION.isUserFinishedQuiz ? styles.none : QUIZSECTION.answerChosen[index] === index ? styles.correct : styles.incorrect}>
-                            <input 
-                                disabled={QUIZSECTION.isUserFinishedQuiz} 
-                                name="selection" 
-                                type="radio" 
-                                id={`selection${index}`} 
-                                checked={QUIZSECTION.answerChosen[QUIZSECTION.currentQuestionNum] === index} 
-                                onChange={_ => clickAnswer(index)}
-                                className={styles.answerInput} />
-                            
-                            <label htmlFor={`selection${index}`}>
-                                <Image src={answer.text} alt="" width={200} height={100} />
-                            </label>
-                        </div>
-                    :
-                    <div 
-                        key={index} 
-                        className={!QUIZSECTION.isUserFinishedQuiz ? styles.none : 
-                                    answer.correct ? styles.correct : 
-                                    QUIZSECTION.answerChosen[QUIZSECTION.currentQuestionNum] === index ? styles.incorrect : 
-                                    styles.none}>
-
-                        <input 
-                            disabled={QUIZSECTION.isUserFinishedQuiz} 
-                            name="selection" 
-                            type="radio" 
-                            id={`selection${index}`} 
-                            checked={QUIZSECTION.answerChosen[QUIZSECTION.currentQuestionNum] === index} 
-                            onChange={_ => clickAnswer(index)} 
-                            className={styles.answerInput} />
-                        
-                        <label 
-                            htmlFor={`selection${index}`}>
-                                {answer.text}
-                        </label>
-                    </div>
+                {category[currentQuestionNum].getAnswers().map((answer, index) => (
+                    createAnswers(answer, index)
                 ))}
                 </div> : 
                 <div>

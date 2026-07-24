@@ -1,11 +1,11 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styles from "./quizSection.module.css";
 import { MathQuestion, Question, ReadingQuestion, WritingQuestion } from '@/libs/Questions';
-import Image from "next/image";
 import MathSection from './subjectPage/math/mathSection';
 import WritingSection from './subjectPage/writing/writingSection';
 import ReadingSection from './subjectPage/reading/readingSection';
 import TransitionQuizPage from './transitionQuizPage/transitionQuizPage';
+import CountDownTimer from './timer/countdowntimer';
 
 interface Props {
     score: number;
@@ -21,7 +21,17 @@ interface Props {
 
 }
 
+interface CountDownTimerLeft {
+    days?: number
+    hrs?: number
+    mins?: number
+    secs?: number
+}
+
 const QuizSection = (QUIZSECTION: Props) => {
+
+    const START_TIME = 50 * 60
+    const [timeLeft, setTimeLeft] = useState(START_TIME)
 
     const className = QUIZSECTION.category[0].constructor.name
     const subjectType = className.substring(0, className.indexOf('Q'))
@@ -35,7 +45,10 @@ const QuizSection = (QUIZSECTION: Props) => {
     return (
         <div>
             <div className={styles.header}>
-                <h1>QUIZ</h1>
+                <h1>
+                    <div>QUIZ</div>
+                    <CountDownTimer startTime={timeLeft} />
+                </h1>
                 <h2>{`${(QUIZSECTION.currentQuestionNum+1)}/${QUIZSECTION.category.length}`}</h2>
             </div>
 

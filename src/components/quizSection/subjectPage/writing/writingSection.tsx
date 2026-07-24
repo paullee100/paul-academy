@@ -17,69 +17,87 @@ interface Props {
 
 const WritingSection = (QUIZSECTION: Props) => {
 
+    const { score, currentQuestionNum, category, isUserFinishedQuiz, 
+        answerChosen, updateAnswerChosen } = QUIZSECTION
+
+    const isInQuizPortion = currentQuestionNum < category.length
+
     const clickAnswer = (index: number) => {
-        const updateArray = [...QUIZSECTION.answerChosen]
-        updateArray[QUIZSECTION.currentQuestionNum] = index
-        QUIZSECTION.updateAnswerChosen(updateArray)
+        const updateArray = [...answerChosen]
+        updateArray[currentQuestionNum] = index
+        updateAnswerChosen(updateArray)
     }
 
-    const isUnderlinedQuestion = !QUIZSECTION.isUserFinishedQuiz && QUIZSECTION.category[QUIZSECTION.currentQuestionNum].getSentence().includes("<")
+    const isUnderlinedQuestion = !isUserFinishedQuiz && category[currentQuestionNum].getSentence().includes("<")
     
     const regex = /(<[^>]+>)/g
-    const match: string[] = QUIZSECTION.category[QUIZSECTION.currentQuestionNum] !== undefined ? [...QUIZSECTION.category[QUIZSECTION.currentQuestionNum].getSentence().split(regex)] : []
+    const match: string[] = category[currentQuestionNum] !== undefined ? [...category[currentQuestionNum].getSentence().split(regex)] : []
+
+    const highlightAnswers = (answer: { text: string, correct: boolean }, index: number) => {
+        let styling = `${styles.none}`
+
+        if (!isUserFinishedQuiz) {
+            return styling
+        }
+
+        if (answer.correct) {
+            styling = `${styles.correct}`
+        } else if (answerChosen[currentQuestionNum] === index) {
+            styling = `${styles.incorrect}`
+        }
+
+        return styling
+    }
 
     return (
         <div>
 
-            {!QUIZSECTION.isUserFinishedQuiz && QUIZSECTION.category[QUIZSECTION.currentQuestionNum].getEssay() ? 
-                <ExcerptPrompt category={QUIZSECTION.category[QUIZSECTION.currentQuestionNum]} />
+            {!isUserFinishedQuiz && category[currentQuestionNum].getEssay() ? 
+                <ExcerptPrompt category={category[currentQuestionNum]} />
                 :
             
             <div>
                 <h3>
-                    {!QUIZSECTION.isUserFinishedQuiz ? 
-                    QUIZSECTION.category[QUIZSECTION.currentQuestionNum].getQuestion() : 
-                    QUIZSECTION.currentQuestionNum < QUIZSECTION.category.length ?
-                    QUIZSECTION.category[QUIZSECTION.currentQuestionNum].getQuestion() :
-                    `You scored ${QUIZSECTION.score} out of ${QUIZSECTION.category.length} - ${Math.round(QUIZSECTION.score/QUIZSECTION.category.length*100)}%`}
+                    {!isUserFinishedQuiz ? 
+                    category[currentQuestionNum].getQuestion() : 
+                    isInQuizPortion ?
+                    category[currentQuestionNum].getQuestion() :
+                    `You scored ${score} out of ${category.length} - ${Math.round(score/category.length*100)}%`}
                 </h3>
 
-                {!QUIZSECTION.isUserFinishedQuiz ?
+                {!isUserFinishedQuiz ?
                     (isUnderlinedQuestion ? 
                         <Sentence match={match} /> :
-                    QUIZSECTION.category[QUIZSECTION.currentQuestionNum].getSentence()
+                    category[currentQuestionNum].getSentence()
                     ) :
                 
                 <div>
-                {QUIZSECTION.currentQuestionNum < QUIZSECTION.category.length ?
-                    (isUnderlinedQuestion ? 
-                        <Sentence match={match} />
-                        :
-                        QUIZSECTION.category[QUIZSECTION.currentQuestionNum].getSentence()) : 
-                        <></>
-                }
+                    {isInQuizPortion ?
+                        (isUnderlinedQuestion ? 
+                            <Sentence match={match} />
+                            :
+                            category[currentQuestionNum].getSentence()) : 
+                            <></>
+                    }
                 </div>}
             </div>}
 
             <br />
 
             {/* ANSWER OPTIONS */}
-            {QUIZSECTION.currentQuestionNum < QUIZSECTION.category.length ?
+            {currentQuestionNum < category.length ?
             <div className={styles.selectionAnswer}>
-                {QUIZSECTION.category[QUIZSECTION.currentQuestionNum].getAnswers().map((answer, index) => (
+                {category[currentQuestionNum].getAnswers().map((answer, index) => (
                     <div 
                         key={index} 
-                        className={!QUIZSECTION.isUserFinishedQuiz ? styles.none : 
-                                    answer.correct ? styles.correct : 
-                                    QUIZSECTION.answerChosen[QUIZSECTION.currentQuestionNum] === index ? styles.incorrect : 
-                                    styles.none}>
+                        className={highlightAnswers(answer, index)}>
 
                         <input 
-                            disabled={QUIZSECTION.isUserFinishedQuiz} 
+                            disabled={isUserFinishedQuiz} 
                             name="selection" 
                             type="radio" 
                             id={`selection${index}`} 
-                            checked={QUIZSECTION.answerChosen[QUIZSECTION.currentQuestionNum] === index} 
+                            checked={answerChosen[currentQuestionNum] === index} 
                             onChange={_ => clickAnswer(index)} />
                         
                         <label 
@@ -94,8 +112,8 @@ const WritingSection = (QUIZSECTION: Props) => {
             </div>
             }
 
-            {QUIZSECTION.isUserFinishedQuiz && QUIZSECTION.currentQuestionNum < QUIZSECTION.category.length ? 
-                <div className={styles.explanation}>{QUIZSECTION.category[QUIZSECTION.currentQuestionNum].getExplanation()}</div> : 
+            {isUserFinishedQuiz && currentQuestionNum < category.length ? 
+                <div className={styles.explanation}>{category[currentQuestionNum].getExplanation()}</div> : 
                 <div></div>}
         </div>
     )

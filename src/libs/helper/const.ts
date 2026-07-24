@@ -12,9 +12,9 @@ export type QUIZSECTION = {
     score: number
     currentQuestionNum: number
     setCurrentQuestionNum: Function
-    category: MathQuestion[]
+    category: Question[]
     /** Check if user is finished, true if finished and false otherwise */
-    isUserFinished: boolean
+    isUserFinishedQuiz: boolean
     answerChosen: any[]
     updateAnswerChosen: Function
     isOnInstructionPage: boolean

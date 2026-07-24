@@ -14,11 +14,10 @@ interface Props {
 
 const ReadingSection = (QUIZSECTION: Props) => {
 
-    const isQuizPortion = QUIZSECTION.currentQuestionNum < QUIZSECTION.category.length
-    const category = QUIZSECTION.category
-    const currentQuestionNum = QUIZSECTION.currentQuestionNum
-    const isUserFinishedQuiz = QUIZSECTION.isUserFinishedQuiz
-    const answerChosen = QUIZSECTION.answerChosen
+    const { score, currentQuestionNum, category, isUserFinishedQuiz, 
+            answerChosen, updateAnswerChosen } = QUIZSECTION
+
+    const isInQuizPortion = currentQuestionNum < category.length
 
     const clickAnswer = (index: number) => {
         const updateArray = [...answerChosen]
@@ -49,9 +48,9 @@ const ReadingSection = (QUIZSECTION: Props) => {
 
                 {/* QUESTIONS/FINISHED QUIZ */}
                 <h3>
-                    {isQuizPortion ? 
-                    QUIZSECTION.category[QUIZSECTION.currentQuestionNum].getQuestion() : 
-                    `You scored ${QUIZSECTION.score} out of ${QUIZSECTION.category.length} - ${Math.round(QUIZSECTION.score/QUIZSECTION.category.length*100)}%`}
+                    {isInQuizPortion ? 
+                    category[currentQuestionNum].getQuestion() : 
+                    `You scored ${score} out of ${category.length} - ${Math.round(score/category.length*100)}%`}
                 </h3>
 
                 {category[currentQuestionNum] && 
@@ -60,7 +59,7 @@ const ReadingSection = (QUIZSECTION: Props) => {
                         {category[currentQuestionNum].getPrompt()}
                     </div>}
 
-                {isQuizPortion ? 
+                {isInQuizPortion ? 
                     category[currentQuestionNum].getAnswers().map((answer, index) => (
                     <div key={`answer${index}`} className={!isUserFinishedQuiz ? styles.none : answer.correct ? styles.correct : answerChosen[currentQuestionNum] === index ? styles.incorrect : styles.none}>
                         <input disabled={isUserFinishedQuiz} name="selection" type="radio" id={`selection${index}`} checked={answerChosen[currentQuestionNum] === index} onChange={_ => clickAnswer(index)} />
