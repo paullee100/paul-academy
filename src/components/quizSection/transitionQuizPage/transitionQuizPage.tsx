@@ -29,7 +29,7 @@ const TransitionQuizPage = ({ score, currentQuestionNum, category, isUserFinishe
 
         if (currentQuestionNum+1 === category.length && !isUserFinishedQuiz) {
 
-            if (false && answerChosen.includes(undefined)) {
+            if (answerChosen.includes(undefined)) {
                 let unanswered: string[] = [];
                 answerChosen.map((question: string | undefined, index: number) => {
                     if (question === undefined) {
