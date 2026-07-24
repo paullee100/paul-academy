@@ -1,12 +1,18 @@
 export class Question {
+    #type
     #question
     #answers
     #explanation
 
-    constructor(question: string, answers: {text: string, correct: boolean}[], explanation: string) {
+    constructor(type: string, question: string, answers: {text: string, correct: boolean}[], explanation: string) {
+        this.#type = type
         this.#question = question
         this.#answers = answers
         this.#explanation = explanation
+    }
+
+    getType() {
+        return this.#type
     }
 
     getQuestion() {
@@ -33,7 +39,8 @@ export class WritingQuestion extends Question {
     #instruction
 
     constructor(question: string, sentence: string, essay: string, answers: {text: string, correct: boolean}[], explanation: string, instruction: string = "") {
-        super(question, answers, explanation)
+        
+        super("writing", question, answers, explanation)
         this.#sentence = sentence
         this.#essay = essay
         this.#instruction = instruction
@@ -60,7 +67,7 @@ export class ReadingQuestion extends Question {
     #instruction
 
     constructor(question: string, answers: {text: string, correct: boolean}[], explanation: string, essay: string, prompt: string, image: string, instruction: string = "") {
-        super(question, answers, explanation)
+        super("reading", question, answers, explanation)
         this.#image = image
         this.#essay = essay
         this.#prompt = prompt
@@ -89,7 +96,7 @@ export class MathQuestion extends Question {
     #image
 
     constructor(question: string, answers: {text: string, correct: boolean}[], explanation: string, image: string | undefined) {
-        super(question, answers, explanation)
+        super("math", question, answers, explanation)
         this.#image = image
     }
 
