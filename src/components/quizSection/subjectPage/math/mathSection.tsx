@@ -42,11 +42,7 @@ const MathSection = (QUIZSECTION: Props) => {
     }
 
     const createAnswers = (answer: { text: string, correct: boolean }, index: number) => {
-
-        const imageOrText = answer.text[0] === '/' ? 
-            `${<Image src={answer.text} alt="" width={200} height={100} />}` :
-            `${answer.text}`
-
+        
         return (
            <div key={index} className={highlightAnswers(answer, index)}>
                     <input 
@@ -59,7 +55,9 @@ const MathSection = (QUIZSECTION: Props) => {
                     className={styles.answerInput} />
                             
                 <label htmlFor={`selection${index}`}>
-                    {imageOrText}
+                    {answer.text[0] === '/' ?
+                        <Image src={answer.text} alt="" width={200} height={100} />:
+                        answer.text}
                 </label>
             </div>
         )

@@ -38,7 +38,11 @@ const QuizSection = (QUIZSECTION: Props) => {
             Math: <MathSection score={QUIZSECTION.score} currentQuestionNum={QUIZSECTION.currentQuestionNum} category={QUIZSECTION.category as MathQuestion[]} isUserFinishedQuiz={QUIZSECTION.isUserFinishedQuiz} answerChosen={QUIZSECTION.answerChosen} updateAnswerChosen={QUIZSECTION.updateAnswerChosen}/>
         }
 
-        return (subject[className.substring(0, className.indexOf('Q')) as keyof typeof subject])
+        return (
+            <div>
+                {subject[className.substring(0, className.indexOf('Q')) as keyof typeof subject] || "ERROR"}
+            </div>
+        )
     }
 
     return (
@@ -58,7 +62,7 @@ const QuizSection = (QUIZSECTION: Props) => {
             </div>
 
             <div className={styles.quiz}>
-                <MathSection score={QUIZSECTION.score} currentQuestionNum={QUIZSECTION.currentQuestionNum} category={QUIZSECTION.category as MathQuestion[]} isUserFinishedQuiz={QUIZSECTION.isUserFinishedQuiz} answerChosen={QUIZSECTION.answerChosen} updateAnswerChosen={QUIZSECTION.updateAnswerChosen}/>
+                {subjectType()}
             </div>
 
             {!QUIZSECTION.isOnInstructionPage && 
