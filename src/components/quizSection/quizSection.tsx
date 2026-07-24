@@ -28,17 +28,33 @@ const QuizSection = (QUIZSECTION: Props) => {
     const [timeLeft, setTimeLeft] = useState(START_TIME)
     
     const subjectType = () => {
-        const className = QUIZSECTION.category[0].constructor.name
-        const subject = {
-            writing: <WritingSection score={QUIZSECTION.score} currentQuestionNum={QUIZSECTION.currentQuestionNum} category={QUIZSECTION.category as WritingQuestion[]} isUserFinishedQuiz={QUIZSECTION.isUserFinishedQuiz} answerChosen={QUIZSECTION.answerChosen} updateAnswerChosen={QUIZSECTION.updateAnswerChosen} />,
-            reading: <ReadingSection score={QUIZSECTION.score} currentQuestionNum={QUIZSECTION.currentQuestionNum} category={QUIZSECTION.category as ReadingQuestion[]} isUserFinishedQuiz={QUIZSECTION.isUserFinishedQuiz} answerChosen={QUIZSECTION.answerChosen} updateAnswerChosen={QUIZSECTION.updateAnswerChosen} />,
-            math: <MathSection score={QUIZSECTION.score} currentQuestionNum={QUIZSECTION.currentQuestionNum} category={QUIZSECTION.category as MathQuestion[]} isUserFinishedQuiz={QUIZSECTION.isUserFinishedQuiz} answerChosen={QUIZSECTION.answerChosen} updateAnswerChosen={QUIZSECTION.updateAnswerChosen}/>
+
+        const className = QUIZSECTION.category[0].constructor.name.toLowerCase()
+        const subjectName = className.substring(0, className.indexOf('q'))
+
+        if (subjectName === 'writing') {
+            return (
+                <div>
+                    <WritingSection score={QUIZSECTION.score} currentQuestionNum={QUIZSECTION.currentQuestionNum} category={QUIZSECTION.category as WritingQuestion[]} isUserFinishedQuiz={QUIZSECTION.isUserFinishedQuiz} answerChosen={QUIZSECTION.answerChosen} updateAnswerChosen={QUIZSECTION.updateAnswerChosen} />,
+                </div>
+            )
+        } else if (subjectName === 'reading') {
+            return (
+                <div>
+                    <ReadingSection score={QUIZSECTION.score} currentQuestionNum={QUIZSECTION.currentQuestionNum} category={QUIZSECTION.category as ReadingQuestion[]} isUserFinishedQuiz={QUIZSECTION.isUserFinishedQuiz} answerChosen={QUIZSECTION.answerChosen} updateAnswerChosen={QUIZSECTION.updateAnswerChosen} />,
+                </div>
+            )
+        } else if (subjectName === 'math') {
+            return (
+                <div>
+                    <MathSection score={QUIZSECTION.score} currentQuestionNum={QUIZSECTION.currentQuestionNum} category={QUIZSECTION.category as MathQuestion[]} isUserFinishedQuiz={QUIZSECTION.isUserFinishedQuiz} answerChosen={QUIZSECTION.answerChosen} updateAnswerChosen={QUIZSECTION.updateAnswerChosen}/>
+                </div>
+            )
         }
 
-        const subjectName = className.substring(0, className.indexOf('Q')).toLowerCase() as keyof typeof subject
         return (
             <div>
-                {subject[subjectName] || "ERROR"}
+                "ERROR"
             </div>
         )
     }
