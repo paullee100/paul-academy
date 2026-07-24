@@ -21,20 +21,25 @@ interface Props {
 
 }
 
-const subject = {
-    Writing: (QUIZSECTION: Props) => <WritingSection score={QUIZSECTION.score} currentQuestionNum={QUIZSECTION.currentQuestionNum} category={QUIZSECTION.category as WritingQuestion[]} isUserFinishedQuiz={QUIZSECTION.isUserFinishedQuiz} answerChosen={QUIZSECTION.answerChosen} updateAnswerChosen={QUIZSECTION.updateAnswerChosen} />,
-    Reading: (QUIZSECTION: Props) => <ReadingSection score={QUIZSECTION.score} currentQuestionNum={QUIZSECTION.currentQuestionNum} category={QUIZSECTION.category as ReadingQuestion[]} isUserFinishedQuiz={QUIZSECTION.isUserFinishedQuiz} answerChosen={QUIZSECTION.answerChosen} updateAnswerChosen={QUIZSECTION.updateAnswerChosen} />,
-    Math: (QUIZSECTION: Props) => <MathSection score={QUIZSECTION.score} currentQuestionNum={QUIZSECTION.currentQuestionNum} category={QUIZSECTION.category as MathQuestion[]} isUserFinishedQuiz={QUIZSECTION.isUserFinishedQuiz} answerChosen={QUIZSECTION.answerChosen} updateAnswerChosen={QUIZSECTION.updateAnswerChosen}/>
-}
 
 const QuizSection = (QUIZSECTION: Props) => {
-
+    
     const START_TIME = 50 * 60
     const [timeLeft, setTimeLeft] = useState(START_TIME)
+    
+    // const subjectType = className.substring(0, className.indexOf('Q'))
+    
+    
+    const subjectType = () => {
+        const className = QUIZSECTION.category[0].constructor.name
+        const subject = {
+            Writing: <WritingSection score={QUIZSECTION.score} currentQuestionNum={QUIZSECTION.currentQuestionNum} category={QUIZSECTION.category as WritingQuestion[]} isUserFinishedQuiz={QUIZSECTION.isUserFinishedQuiz} answerChosen={QUIZSECTION.answerChosen} updateAnswerChosen={QUIZSECTION.updateAnswerChosen} />,
+            Reading: <ReadingSection score={QUIZSECTION.score} currentQuestionNum={QUIZSECTION.currentQuestionNum} category={QUIZSECTION.category as ReadingQuestion[]} isUserFinishedQuiz={QUIZSECTION.isUserFinishedQuiz} answerChosen={QUIZSECTION.answerChosen} updateAnswerChosen={QUIZSECTION.updateAnswerChosen} />,
+            Math: <MathSection score={QUIZSECTION.score} currentQuestionNum={QUIZSECTION.currentQuestionNum} category={QUIZSECTION.category as MathQuestion[]} isUserFinishedQuiz={QUIZSECTION.isUserFinishedQuiz} answerChosen={QUIZSECTION.answerChosen} updateAnswerChosen={QUIZSECTION.updateAnswerChosen}/>
+        }
 
-    const className = QUIZSECTION.category[0].constructor.name
-    const subjectType = className.substring(0, className.indexOf('Q'))
-
+        return (subject[className.substring(0, className.indexOf('Q')) as keyof typeof subject])
+    }
 
     return (
         <div>
@@ -53,7 +58,7 @@ const QuizSection = (QUIZSECTION: Props) => {
             </div>
 
             <div className={styles.quiz}>
-                {subject[subjectType as keyof typeof subject](QUIZSECTION)}
+                {subjectType()}
             </div>
 
             {!QUIZSECTION.isOnInstructionPage && 
