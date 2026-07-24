@@ -58,7 +58,7 @@ const QuizSection = (QUIZSECTION: Props) => {
             </div>
 
             <div className={styles.quiz}>
-                {subjectType()}
+                <MathSection score={QUIZSECTION.score} currentQuestionNum={QUIZSECTION.currentQuestionNum} category={QUIZSECTION.category as MathQuestion[]} isUserFinishedQuiz={QUIZSECTION.isUserFinishedQuiz} answerChosen={QUIZSECTION.answerChosen} updateAnswerChosen={QUIZSECTION.updateAnswerChosen}/>
             </div>
 
             {!QUIZSECTION.isOnInstructionPage && 
