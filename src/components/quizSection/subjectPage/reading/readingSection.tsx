@@ -22,10 +22,7 @@ const ReadingSection = (QUIZSECTION: Props) => {
 
     const clickAnswer = (index: number) => {
         const updateArray = [...answerChosen]
-
-        for (let i = 0; i < updateArray.length; i++)
-            updateArray[i] = index
-        // updateArray[currentQuestionNum] = index
+        updateArray[currentQuestionNum] = index
         QUIZSECTION.updateAnswerChosen(updateArray)
     }
 
